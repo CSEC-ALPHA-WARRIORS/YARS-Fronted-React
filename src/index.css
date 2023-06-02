@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color: none;
+  text-decoration: none;
+}
+
+a {
+  color: white;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 134%;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+}
+a:hover {
+  color: #FFB703;
+}
+
+.black-bg {
+  background-color: #000;
+}
+
+.black {
+  color: #000;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.white {
+  color: white;
+}
+
+.blue-black-bg {
+  background-color: #023047;
+}
+
+.blue-black {
+  color: #023047;
+}
+
+.gray-bg {
+  background-color: rgba(255, 255, 255, 0.19);
+}
+
+.gray {
+  color: rgba(255, 255, 255, 0.19);
+}
+
+.orange-bg {
+  background-color: #FB8500;
+}
+
+.orange {
+  color: #FB8500;
+}
+
+.white-gray-bg {
+  background-color: rgba(251, 133, 0, 0.13);
+}
+
+.white-gray {
+  color: rgba(251, 133, 0, 0.13);
+}
+
+.blue-bg {
+  background-color: #2F80ED;;
+}
+
+.blue {
+  color: #2F80ED;;
+}
+
+.bm-10 {
+  margin-bottom: 10px;
+}
+
+.tm-10 {
+  margin-top: 10px;
+}
+
+.bm-20 {
+  margin-bottom: 20px;
+}
+
+.tm-20 {
+  margin-top: 20px;
+}
+
+.bm-30 {
+  margin-bottom: 30px;
+}
+
+.tm-30 {
+  margin-top: 30px;
+}
+
+.bm-40 {
+  margin-bottom: 40px;
+}
+
+.tm-40 {
+  margin-top: 40px;
+}
+
+.bm-50 {
+  margin-bottom: 50px;
+}
+
+.tm-50 {
+  margin-top: 50px;
+}
+
+.bm-60 {
+  margin-bottom: 60px;
+}
+
+.tm-60 {
+  margin-top: 60px;
+}
+
+.bm-70 {
+  margin-bottom: 70px;
+}
+
+.tm-70 {
+  margin-top: 70px;
+}
+
+.bm-80 {
+  margin-bottom: 80px;
+}
+
+.tm-80 {
+  margin-top: 80px;
+}
+
+.bm-90 {
+  margin-bottom: 90px;
+}
+
+.tm-90 {
+  margin-top: 90px;
+}
+
+.bm-100 {
+  margin-bottom: 100px;
+}
+
+.tm-100 {
+  margin-top: 100px;
+}/*# sourceMappingURL=index.css.map */

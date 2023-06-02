@@ -1,0 +1,46 @@
+.footer {
+  height: 40vh;
+  background-color: #023047;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-top: 80px;
+  margin-top: 100px;
+}
+.footer .footer-informations {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  min-width: 55%;
+}
+.footer .footer-informations .foot {
+  display: flex;
+  flex-direction: column;
+}
+.footer .footer-informations .foot h1 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 134%;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.footer .footer-informations .foot a,
+.footer .footer-informations .foot p {
+  color: white;
+  margin-bottom: 10px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 134%;
+  text-transform: capitalize;
+  transition: all 0.2s ease-in-out;
+}
+.footer .footer-informations .foot a:hover {
+  color: #FFB703;
+  cursor: pointer;
+}/*# sourceMappingURL=footerStyle.css.map */

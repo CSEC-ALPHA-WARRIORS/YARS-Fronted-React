@@ -1,0 +1,23 @@
+.inputField {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+}
+.inputField label {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  color: #000000;
+  margin-bottom: 5px;
+}
+.inputField .inpt {
+  background: rgba(163, 217, 249, 0.09);
+  border: 2px solid #03234E;
+  border-radius: 5px;
+  height: 40px;
+  padding: 5px 10px;
+  font-size: 18px;
+}/*# sourceMappingURL=inputFieldStyle.css.map */

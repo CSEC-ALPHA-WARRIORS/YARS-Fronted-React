@@ -1,0 +1,87 @@
+.heroPage {
+    .home {
+        background-image: url('../../assets/images/hero.png');
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .home-section-buttons {
+            margin-top: 6.3rem;
+            display: flex;
+            gap: 60px;
+        }
+
+        .slogan {
+            margin-top: 3.1rem;
+            font-size: 1.8rem;
+            color: white;
+            font-family: "Raleway";
+            font-weight: 700;
+            text-align: center;
+            color:#FB8500 ;
+        }
+    }
+
+    .who-we-are {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 60px;
+        margin-bottom: 50px;
+
+        .cards {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+    }
+
+    .register-now {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+
+        .student-number-container {
+            background-color: #023047;
+            height: 150px;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .about-registration {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            p {
+                font-family: 'Raleway';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 140%;
+                text-align: center;
+                color: #000000;
+                width: 50%;
+                margin-bottom: 20px;
+            }
+
+        }
+    }
+
+
+}

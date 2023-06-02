@@ -1,0 +1,99 @@
+.register-page {
+  padding: 30px 150px;
+  display: flex;
+  justify-content: left;
+  gap: 50px;
+  flex-direction: column;
+}
+.register-page .register-description {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.register-page .register-description h1 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 75px;
+  margin-bottom: 10px;
+}
+.register-page .register-description p {
+  width: 70%;
+  font-style: "Raleway";
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: justify;
+}
+.register-page .personal-information {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  gap: 20px;
+}
+.register-page .personal-information .personal-information-inputs {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 100px;
+}
+.register-page .personal-information .personal-information-inputs .img-uploader {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  margin: 30px;
+  cursor: pointer;
+}
+.register-page .personal-information .personal-information-inputs .img-uploader img {
+  width: 125px;
+  height: 125px;
+}
+.register-page .personal-information .personal-information-inputs .information-inputs {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  flex-direction: column;
+}
+.register-page .personal-information .personal-information-inputs .information-inputs .fist-middle-name,
+.register-page .personal-information .personal-information-inputs .information-inputs .last-name,
+.register-page .personal-information .personal-information-inputs .information-inputs .email-phone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+}
+.register-page .personal-information .personal-information-inputs .information-inputs .last-name {
+  width: 48.5%;
+}
+.register-page .address-information,
+.register-page .registration-information,
+.register-page .login-information {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.register-page .address-information .address-inputs,
+.register-page .address-information .registration-inputs,
+.register-page .address-information .login-inputs,
+.register-page .registration-information .address-inputs,
+.register-page .registration-information .registration-inputs,
+.register-page .registration-information .login-inputs,
+.register-page .login-information .address-inputs,
+.register-page .login-information .registration-inputs,
+.register-page .login-information .login-inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+.register-page .button-container {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}/*# sourceMappingURL=registerStyle.css.map */

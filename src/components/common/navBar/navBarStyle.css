@@ -1,0 +1,27 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  flex-direction: row;
+  background-color: #023047;
+  padding: 0px 150px;
+}
+nav h1 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 100px;
+  text-transform: uppercase;
+  color: white;
+}
+nav .nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+nav .nav-links a {
+  text-transform: capitalize;
+  font-weight: 500;
+}/*# sourceMappingURL=navBarStyle.css.map */
