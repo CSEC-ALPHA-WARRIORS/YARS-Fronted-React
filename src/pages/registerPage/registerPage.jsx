@@ -5,6 +5,7 @@ import uploadImage from '../../assets/images/camera.png'
 import './registerStyle.scss'
 import Footer from '../../components/common/footer/footer'
 import Button from '../../components/common/button/button'
+import { Link } from 'react-router-dom'
 
 function RegisterPage() {
   return (
@@ -60,7 +61,7 @@ function RegisterPage() {
           </div>
         </div>
         <div className="button-container">
-          <Button className="blue-bg white orange-hover" text="Continue to Payment" />
+        <Link to="/payment"> <Button className="blue-bg white orange-hover" text="Continue to Payment" /></Link>
         </div>
 
       </div>
