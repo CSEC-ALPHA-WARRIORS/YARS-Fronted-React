@@ -73,6 +73,7 @@ function RegisterPage() {
       end_date: end_date,
       gpa: gpa
     },
+    
     registration: {
       year: year,
       semester: semester,
@@ -85,13 +86,13 @@ function RegisterPage() {
   const handleRegistration = () => {
     // setStudent(Student)
     axios.post('http://localhost:8000/api/register', Student)
-      // .then(function (response) {
-      //   console.log(response);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
     // console.log(student)
-    console.log("capital",Student)
+    console.log("capital", Student)
     // });
     console.log("clicked")
 
