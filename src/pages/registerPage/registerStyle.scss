@@ -1,3 +1,9 @@
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .register-page {
     padding: 30px 150px;
     display: flex;
@@ -9,6 +15,7 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 20px;
+
         h1 {
             font-family: 'Raleway';
             font-style: normal;
@@ -39,6 +46,9 @@
             justify-content: space-between;
             flex-direction: row;
             gap: 100px;
+            // flex-wrap: wrap;
+
+
             .img-uploader {
                 background: rgba(0, 0, 0, 0.1);
                 border-radius: 14px;
@@ -48,7 +58,8 @@
                 width: 350px;
                 margin: 30px;
                 cursor: pointer;
-                img{
+
+                img {
                     width: 125px;
                     height: 125px;
                 }
@@ -59,17 +70,47 @@
                 width: 100%;
                 gap: 20px;
                 flex-direction: column;
+
                 .fist-middle-name,
                 .last-name,
-                .email-phone {
+                .type-phone {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     flex-direction: row;
                     gap: 20px;
+                    flex-wrap: wrap;
+
                 }
-                .last-name{
-                    width: 48.5%;
+
+                .type-phone {
+                    .selection-container {
+                        display: flex;
+                        justify-content: center;
+                        flex: 1;
+                        flex-direction: column;
+
+                        label {
+                            font-family: 'Raleway';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 23px;
+                            color: #000000;
+                            margin-bottom: 5px;
+                        }
+
+                        .selection {
+                            background: rgba(163, 217, 249, 0.09);
+                            border: 2px solid #03234E;
+                            border-radius: 5px;
+                            // min-width: 350px;
+                            height: 55px;
+                            padding: 5px 10px;
+                            font-size: 18px;
+                        }
+                    }
+
                 }
             }
         }
@@ -78,6 +119,8 @@
 
     .address-information,
     .registration-information,
+    .educational-bg-information,
+    .emergency-information,
     .login-information {
         display: flex;
         flex-direction: column;
@@ -86,13 +129,91 @@
 
         .address-inputs,
         .registration-inputs,
+        .educational-bg-inputs,
+        .emergency-inputs,
         .login-inputs {
             display: flex;
             justify-content: space-between;
             gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .address-inputs {
+            display: flex;
+            flex-direction: column;
+
+            .address {
+                display: flex;
+                flex: 1;
+                flex-direction: row;
+                gap: 30px;
+            }
         }
     }
-    .button-container{
+
+    .registration-inputs {
+        display: flex;
+        flex-direction: column;
+
+        .registration {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            gap: 30px;
+
+        }
+    }
+
+    .educational-bg-inputs {
+        display: flex;
+        flex-direction: column;
+
+        .educational-bg {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+        }
+    }
+
+    .emergency-inputs {
+        display: flex;
+        flex-direction: column;
+
+        .emergency {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+
+            .selection-container {
+                display: flex;
+                justify-content: center;
+                flex: 1;
+                flex-direction: column;
+
+                label {
+                    font-family: 'Raleway';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 23px;
+                    color: #000000;
+                    margin-bottom: 5px;
+                }
+
+                .selection {
+                    background: rgba(163, 217, 249, 0.09);
+                    border: 2px solid #03234E;
+                    border-radius: 5px;
+                    // min-width: 350px;
+                    height: 55px;
+                    padding: 5px 10px;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    .button-container {
         margin-top: 50px;
         width: 100%;
         display: flex;
