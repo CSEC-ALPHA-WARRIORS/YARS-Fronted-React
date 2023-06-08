@@ -43,6 +43,7 @@ function RegisterPage() {
   const [level, setLevel] = useState();
   const [registered_at, setRegistered_at] = useState();
 
+  const [error, setError]=useState("error message");
   // All set all data in json
   // const [student, setStudent] = useState()
   const Student = {
@@ -112,15 +113,16 @@ function RegisterPage() {
           <div className="personal-information-inputs">
             <div className="img-uploader">
               <img src={uploadImage} alt="" />
+              
             </div>
             <div className="information-inputs">
               <div className="fist-middle-name">
-                <InputField label="First Name" type="text" value={fname} onChange={e => setFname(e.target.value)} placeholder="Enter your First Name" />
-                <InputField label="Middle Name" type="text" value={mname} onChange={e => setMname(e.target.value)} placeholder="Enter your Middle Name" />
+                <InputField label="First Name" type="text" error={error} value={fname} onChange={e => setFname(e.target.value)} placeholder="Enter your First Name" />
+                <InputField label="Middle Name" type="text" error={error} value={mname} onChange={e => setMname(e.target.value)} placeholder="Enter your Middle Name" />
               </div>
               <div className="last-name">
-                <InputField label="Last Name" type="text" value={lname} onChange={e => setLname(e.target.value)} placeholder="Enter your Last Name" />
-                <InputField label="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter your Email Address" />
+                <InputField label="Last Name" type="text" error={error} value={lname} onChange={e => setLname(e.target.value)} placeholder="Enter your Last Name" />
+                <InputField label="Email" type="email" error={error} value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter your Email Address" />
               </div>
               <div className="type-phone">
                 <div className="selection-container">
@@ -131,7 +133,7 @@ function RegisterPage() {
                     <option value="Night">Night Student</option>
                   </select>
                 </div>
-                <InputField label="Phone Number" type="number" value={phonenumber} onChange={e => setPhonenumber(e.target.value)} placeholder="Enter your Phone Number" />
+                <InputField label="Phone Number" type="number" error={error} value={phonenumber} onChange={e => setPhonenumber(e.target.value)} placeholder="Enter your Phone Number" />
               </div>
             </div>
           </div>
@@ -140,12 +142,12 @@ function RegisterPage() {
           <h2>Address Information</h2>
           <div className="address-inputs">
             <div className='address'>
-              <InputField label="City" type="text" value={city} onChange={e => setCity(e.target.value)} placeholder="Enter Your City" />
-              <InputField label="Woreda" type="text" value={woreda} onChange={e => setWoreda(e.target.value)} placeholder="Enter Your Woreda" />
+              <InputField label="City" type="text" error={error} value={city} onChange={e => setCity(e.target.value)} placeholder="Enter Your City" />
+              <InputField label="Woreda" type="text" error={error} value={woreda} onChange={e => setWoreda(e.target.value)} placeholder="Enter Your Woreda" />
             </div>
             <div className='address'>
-              <InputField label="Kebele" type="text" value={kebele} onChange={e => setKebele(e.target.value)} placeholder="Enter Your Kebele" />
-              <InputField label="House Number" type="number" value={house_no} onChange={e => setHouse_no(e.target.value)} placeholder="Enter Your Kebele" />
+              <InputField label="Kebele" type="text" error={error} value={kebele} onChange={e => setKebele(e.target.value)} placeholder="Enter Your Kebele" />
+              <InputField label="House Number" type="number" error={error} value={house_no} onChange={e => setHouse_no(e.target.value)} placeholder="Enter Your Kebele" />
             </div>
           </div>
         </div>
@@ -153,12 +155,12 @@ function RegisterPage() {
           <h2>Registration Information</h2>
           <div className="registration-inputs">
             <div className="registration">
-              <InputField label="Year" type="text" value={year} onChange={e => setYear(e.target.value)} placeholder="Enter Your Year" />
-              <InputField label="Semester" type="text" value={semester} onChange={e => setSemester(e.target.value)} placeholder="Enter Your Semester" />
+              <InputField label="Year" type="number" error={error} value={year} onChange={e => setYear(e.target.value)} placeholder="Enter Your Year" />
+              <InputField label="Semester" type="number" error={error} value={semester} onChange={e => setSemester(e.target.value)} placeholder="Enter Your Semester" />
             </div>
             <div className="registration">
-              <InputField label="Program" type="text" value={program} onChange={e => setProgram(e.target.value)} placeholder="Enter Your Program" />
-              <InputField label="Education Level" type="text" value={level} onChange={e => setLevel(e.target.value)} placeholder="Enter Your Education Level" />
+              <InputField label="Program" type="text" error={error} value={program} onChange={e => setProgram(e.target.value)} placeholder="Enter Your Program" />
+              <InputField label="Education Level" type="text" error={error} value={level} onChange={e => setLevel(e.target.value)} placeholder="Enter Your Education Level" />
             </div>
           </div>
         </div>
@@ -166,12 +168,12 @@ function RegisterPage() {
           <h2>Educational Background</h2>
           <div className="educational-bg-inputs">
             <div className="educational-bg">
-              <InputField label="School Name" type="text" value={school} onChange={e => setSchool(e.target.value)} placeholder="Enter Your School Name" />
-              <InputField label="Grade" value={gpa} onChange={e => setGpa(e.target.value)} type="text" placeholder="Enter Your Grade" />
+              <InputField label="School Name" type="text" error={error} value={school} onChange={e => setSchool(e.target.value)} placeholder="Enter Your School Name" />
+              <InputField label="Grade" value={gpa} error={error} onChange={e => setGpa(e.target.value)} type="text" placeholder="Enter Your Grade" />
             </div>
             <div className="educational-bg">
-              <InputField label="Start Date" type="date" value={start_date} onChange={e => setStart_date(e.target.value)} placeholder="Enter Your Program" />
-              <InputField label="End Date" type="date" value={end_date} onChange={e => setEnd_date(e.target.value)} placeholder="Enter Your Education Level" />
+              <InputField label="Start Date" type="date" error={error} value={start_date} onChange={e => setStart_date(e.target.value)} placeholder="Enter Your Program" />
+              <InputField label="End Date" type="date" error={error} value={end_date} onChange={e => setEnd_date(e.target.value)} placeholder="Enter Your Education Level" />
             </div>
           </div>
         </div>
@@ -179,9 +181,9 @@ function RegisterPage() {
           <h2>Emergency Contact</h2>
           <div className="emergency-inputs">
             <div className="emergency">
-              <InputField label="First Name" type="text" value={efname} onChange={e => setEfname(e.target.value)} placeholder="Enter First Name" />
-              <InputField label="Middle Name" type="text" value={emname} onChange={e => setEmname(e.target.value)} placeholder="Enter Middle Name" />
-              <InputField label="Last Name" type="text" value={elname} onChange={e => setElname(e.target.value)} placeholder="Enter your Last Name" />
+              <InputField label="First Name" type="text" error={error} value={efname} onChange={e => setEfname(e.target.value)} placeholder="Enter First Name" />
+              <InputField label="Middle Name" type="text" error={error} value={emname} onChange={e => setEmname(e.target.value)} placeholder="Enter Middle Name" />
+              <InputField label="Last Name" type="text" error={error} value={elname} onChange={e => setElname(e.target.value)} placeholder="Enter your Last Name" />
             </div>
             <div className="emergency">
               <div className="selection-container">
@@ -192,21 +194,20 @@ function RegisterPage() {
                   <option value="Night">Legal Guardian</option>
                 </select>
               </div>
-              <InputField label="Phone Number" type="Number" value={ephonenumber} onChange={e => setEphonenumber(e.target.value)} placeholder="Enter Phone Number" />
+              <InputField label="Phone Number" type="Number" error={error} value={ephonenumber} onChange={e => setEphonenumber(e.target.value)} placeholder="Enter Phone Number" />
             </div>
           </div>
         </div>
         <div className="login-information">
           <h2>Login Information</h2>
           <div className="login-inputs">
-            <InputField label="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter Password" />
-            <InputField label="Password" type="password" placeholder="Confirm Your Password" />
+            <InputField label="Password" type="password" error={error} value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter Password" />
+            <InputField label="Password" type="password" error={error} placeholder="Confirm Your Password" />
           </div>
         </div>
         <div className="button-container">
           <Link to="/payment"> <Button className="blue-bg white orange-hover" onClick={handleRegistration} text="Continue to Payment" /></Link>
         </div>
-
       </div>
       <Footer />
     </>
