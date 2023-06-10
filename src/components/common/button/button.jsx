@@ -1,8 +1,8 @@
 import React from 'react'
 import './buttonStyle.scss'
-function Button({className,text,onClick}) {
+function Button({className,text}) {
   return (
-      <button onClick={onClick} className={["btn",className].join(" ")} >{text}</button>
+      <button type="submit"  className={["btn",className].join(" ")} >{text}</button>
   )
 }
 

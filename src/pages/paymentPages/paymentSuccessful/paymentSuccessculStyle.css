@@ -1,0 +1,33 @@
+.payment-successful-container {
+  padding: 30px 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.payment-successful-container h1 {
+  width: 50%;
+  text-align: center;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+.payment-successful-container p {
+  width: 70%;
+  font-style: "Raleway";
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+.payment-successful-container .successful-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+}/*# sourceMappingURL=paymentSuccessculStyle.css.map */
