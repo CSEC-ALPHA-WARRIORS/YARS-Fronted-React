@@ -1,0 +1,21 @@
+.student-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    .students-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .table-head,
+        .table-row {
+            display: flex;
+            flex-direction: row;
+
+        }
+    }
+}

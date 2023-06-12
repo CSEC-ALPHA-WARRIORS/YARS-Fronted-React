@@ -45,23 +45,45 @@ input[type=number]::-webkit-outer-spin-button {
             display: flex;
             justify-content: space-between;
             flex-direction: row;
+            align-items: center;
             gap: 100px;
             // flex-wrap: wrap;
 
 
             .img-uploader {
-                background: rgba(0, 0, 0, 0.1);
-                border-radius: 14px;
+                // background: rgba(0, 0, 0, 0.1);
+                border-radius: 15px;
                 display: flex;
                 align-items: center;
+                flex-direction: column;
+                gap: 10px;
                 justify-content: center;
-                width: 350px;
+                width: 400px;
+                height: 250px;
                 margin: 30px;
                 cursor: pointer;
 
-                img {
-                    width: 125px;
-                    height: 125px;
+                .ppimage {
+                    background-color: #03234E;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 30%;
+                    img {
+                        width: 100%;
+                        border-radius: 30%;
+                        height: 100%;
+
+                        cursor: pointer;
+
+                    }
+                }
+
+
+                #profileImg {
+                    display: none;
                 }
             }
 

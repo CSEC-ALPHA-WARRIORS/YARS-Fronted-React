@@ -1,3 +1,9 @@
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .register-page {
   padding: 30px 150px;
   display: flex;
@@ -36,21 +42,38 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  align-items: center;
   gap: 100px;
 }
 .register-page .personal-information .personal-information-inputs .img-uploader {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 14px;
+  border-radius: 15px;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  gap: 10px;
   justify-content: center;
-  width: 350px;
+  width: 400px;
+  height: 250px;
   margin: 30px;
   cursor: pointer;
 }
-.register-page .personal-information .personal-information-inputs .img-uploader img {
-  width: 125px;
-  height: 125px;
+.register-page .personal-information .personal-information-inputs .img-uploader .ppimage {
+  background-color: #03234E;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30%;
+}
+.register-page .personal-information .personal-information-inputs .img-uploader .ppimage img {
+  width: 100%;
+  border-radius: 30%;
+  height: 100%;
+  cursor: pointer;
+}
+.register-page .personal-information .personal-information-inputs .img-uploader #profileImg {
+  display: none;
 }
 .register-page .personal-information .personal-information-inputs .information-inputs {
   display: flex;
@@ -60,18 +83,41 @@
 }
 .register-page .personal-information .personal-information-inputs .information-inputs .fist-middle-name,
 .register-page .personal-information .personal-information-inputs .information-inputs .last-name,
-.register-page .personal-information .personal-information-inputs .information-inputs .email-phone {
+.register-page .personal-information .personal-information-inputs .information-inputs .type-phone {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   gap: 20px;
+  flex-wrap: wrap;
 }
-.register-page .personal-information .personal-information-inputs .information-inputs .last-name {
-  width: 48.5%;
+.register-page .personal-information .personal-information-inputs .information-inputs .type-phone .selection-container {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+}
+.register-page .personal-information .personal-information-inputs .information-inputs .type-phone .selection-container label {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  color: #000000;
+  margin-bottom: 5px;
+}
+.register-page .personal-information .personal-information-inputs .information-inputs .type-phone .selection-container .selection {
+  background: rgba(163, 217, 249, 0.09);
+  border: 2px solid #03234E;
+  border-radius: 5px;
+  height: 55px;
+  padding: 5px 10px;
+  font-size: 18px;
 }
 .register-page .address-information,
 .register-page .registration-information,
+.register-page .educational-bg-information,
+.register-page .emergency-information,
 .register-page .login-information {
   display: flex;
   flex-direction: column;
@@ -80,16 +126,102 @@
 }
 .register-page .address-information .address-inputs,
 .register-page .address-information .registration-inputs,
+.register-page .address-information .educational-bg-inputs,
+.register-page .address-information .emergency-inputs,
 .register-page .address-information .login-inputs,
 .register-page .registration-information .address-inputs,
 .register-page .registration-information .registration-inputs,
+.register-page .registration-information .educational-bg-inputs,
+.register-page .registration-information .emergency-inputs,
 .register-page .registration-information .login-inputs,
+.register-page .educational-bg-information .address-inputs,
+.register-page .educational-bg-information .registration-inputs,
+.register-page .educational-bg-information .educational-bg-inputs,
+.register-page .educational-bg-information .emergency-inputs,
+.register-page .educational-bg-information .login-inputs,
+.register-page .emergency-information .address-inputs,
+.register-page .emergency-information .registration-inputs,
+.register-page .emergency-information .educational-bg-inputs,
+.register-page .emergency-information .emergency-inputs,
+.register-page .emergency-information .login-inputs,
 .register-page .login-information .address-inputs,
 .register-page .login-information .registration-inputs,
+.register-page .login-information .educational-bg-inputs,
+.register-page .login-information .emergency-inputs,
 .register-page .login-information .login-inputs {
   display: flex;
   justify-content: space-between;
   gap: 30px;
+  flex-wrap: wrap;
+}
+.register-page .address-information .address-inputs,
+.register-page .registration-information .address-inputs,
+.register-page .educational-bg-information .address-inputs,
+.register-page .emergency-information .address-inputs,
+.register-page .login-information .address-inputs {
+  display: flex;
+  flex-direction: column;
+}
+.register-page .address-information .address-inputs .address,
+.register-page .registration-information .address-inputs .address,
+.register-page .educational-bg-information .address-inputs .address,
+.register-page .emergency-information .address-inputs .address,
+.register-page .login-information .address-inputs .address {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 30px;
+}
+.register-page .registration-inputs {
+  display: flex;
+  flex-direction: column;
+}
+.register-page .registration-inputs .registration {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  gap: 30px;
+}
+.register-page .educational-bg-inputs {
+  display: flex;
+  flex-direction: column;
+}
+.register-page .educational-bg-inputs .educational-bg {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.register-page .emergency-inputs {
+  display: flex;
+  flex-direction: column;
+}
+.register-page .emergency-inputs .emergency {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.register-page .emergency-inputs .emergency .selection-container {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+}
+.register-page .emergency-inputs .emergency .selection-container label {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 23px;
+  color: #000000;
+  margin-bottom: 5px;
+}
+.register-page .emergency-inputs .emergency .selection-container .selection {
+  background: rgba(163, 217, 249, 0.09);
+  border: 2px solid #03234E;
+  border-radius: 5px;
+  height: 55px;
+  padding: 5px 10px;
+  font-size: 18px;
 }
 .register-page .button-container {
   margin-top: 50px;
