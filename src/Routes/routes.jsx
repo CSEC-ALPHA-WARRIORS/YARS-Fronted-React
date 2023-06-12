@@ -11,6 +11,7 @@ import ContactUs from '../pages/contactUs/contactUs';
 import ChapaPayment from '../pages/paymentPages/chapaPayment/chapaPayment';
 import StudentPortal from '../pages/studentPortal/studentPortal';
 import Login from '../pages/Admin/loginPage/login';
+import Students from '../pages/Admin/studentProfile/students';
 function RoutePage() {
     return (
         <Routes >
@@ -24,6 +25,7 @@ function RoutePage() {
             <Route exact path='/payment-successful' Component={PaymentSuccessful} />
             <Route exact path='/contact-us' Component={ContactUs} />
             <Route exact path='/admin' Component={Login}/>
+            <Route path='/admin/students' Component={Students} />
         </Routes>
     )
 }

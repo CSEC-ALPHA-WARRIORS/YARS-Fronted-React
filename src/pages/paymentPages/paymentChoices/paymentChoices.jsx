@@ -2,9 +2,16 @@ import React from 'react'
 import NavBar from '../../../components/common/navBar/navBar'
 import Footer from '../../../components/common/footer/footer'
 import Button from '../../../components/common/button/button'
+import axios from 'axios'
 import './paymentChoiceStyle.scss'
 import { Link } from 'react-router-dom'
 function PaymentChoices() {
+
+
+    const pay = () => {
+        axios.post('')
+    }
+
     return (
         <>
             <NavBar />

@@ -12,46 +12,13 @@ import * as Yup from 'yup';
 import RegistrationValidation from './validation'
 
 function RegisterPage() {
-
-
-
-  // const [fname, setFname] = useState();
-  // const [mname, setMname] = useState();
-  // const [lname, setLname] = useState();
   const [profile_picture_url, setProfile_picture_url] = useState();
-  // const [email, setEmail] = useState();
-  // const [phonenumber, setPhonenumber] = useState();
-  // const [password, setPassword] = useState();
-  const [type, setType] = useState("Regular");
-
-  // Address
-  // const [city, setCity] = useState();
-  // const [woreda, setWoreda] = useState();
-  // const [kebele, setKebele] = useState();
-  // const [house_no, setHouse_no] = useState();
-  // emergency_contact
-  // const [efname, setEfname] = useState();
-  // const [emname, setEmname] = useState();
-  // const [elname, setElname] = useState();
-  // const [relationship, setRelationship] = useState("Father");
-  // const [ephonenumber, setEphonenumber] = useState();
-  // educational_background
-  // const [school, setSchool] = useState();
-  // const [start_date, setStart_date] = useState();
-  // const [end_date, setEnd_date] = useState();
-  // const [gpa, setGpa] = useState();
-  // registration
-  // const [year, setYear] = useState();
-  // const [semester, setSemester] = useState();
-  // const [program, setProgram] = useState();
-  // const [level, setLevel] = useState();
-  // const [registered_at, setRegistered_at] = useState();
-
+  // const [type, setType] = useState("Regular");
   const [img, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(uploadImage);
-  const [error, setError] = useState("error message");
-  // All set all data in json
-  // const [student, setStudent] = useState()
+  const [error, setError] = useState(null);
+  const [userToken,setUserToken]=useState()
+  // const [error, setError] = useState("error message");
 
 
 
@@ -111,9 +78,14 @@ function RegisterPage() {
           registered_at: new Date(),
         }
       }
-      console.log(Student);
-      console.log(Student.profile_picture_url);
-      axios.post('http://localhost:8000/api/register', Student);
+      // console.log(Student);
+      // console.log(Student.profile_picture_url);
+      axios.post('http://localhost:8000/api/register', Student).then(response => {
+        console.log(response);
+        
+      }).catch(error => {
+        setError(error.message)
+      })
     })
 
 
@@ -181,6 +153,8 @@ function RegisterPage() {
         setProfile_picture_url(uploadedFileUrl);
         callback(uploadedFileUrl)
       }
+    }).catch(error => {
+      setError(error.message);
     })
 
   }
@@ -210,8 +184,8 @@ function RegisterPage() {
                   <InputField label="Middle Name" type="text" error={errors.mname && touched.mname ? errors.mname : ""} value={values.mname} id="mname" onChange={handleChange} onBlur={handleBlur} placeholder="Enter your Middle Name" />
                 </div>
                 <div className="last-name">
-                  <InputField label="Last Name" type="text" error={errors.lname} value={values.lname} id="lname" onChange={handleChange} onBlur={handleBlur} className={errors.lname && touched.lname ? "error" : ""} placeholder="Enter your Last Name" />
-                  <InputField label="Email" type="email" error={errors.email} value={values.email} id="email" onChange={handleChange} onBlur={handleBlur} className={errors.email && touched.email ? "error" : ""} placeholder="Enter your Email Address" />
+                  <InputField label="Last Name" type="text" error={errors.lname && touched.lname ? errors.lname : ""} value={values.lname} id="lname" onChange={handleChange} onBlur={handleBlur} placeholder="Enter your Last Name" />
+                  <InputField label="Email" type="email" error={errors.email && touched.email ? errors.email : ""} value={values.email} id="email" onChange={handleChange} onBlur={handleBlur} placeholder="Enter your Email Address" />
                 </div>
                 <div className="type-phone">
                   <div className="selection-container">
@@ -222,7 +196,7 @@ function RegisterPage() {
                       <option value="Night">Night Student</option>
                     </select>
                   </div>
-                  <InputField label="Phone Number" type="number" error={errors.phonenumber} value={values.phonenumber} id="phonenumber" onChange={handleChange} onBlur={handleBlur} className={errors.phonenumber && touched.phonenumber ? "error" : ""} placeholder="Enter your Phone Number" />
+                  <InputField label="Phone Number" type="number" error={errors.phonenumber && touched.phonenumber ? errors.phonenumber : ""} value={values.phonenumber} id="phonenumber" onChange={handleChange} onBlur={handleBlur} placeholder="Enter your Phone Number" />
                 </div>
               </div>
             </div>
@@ -231,12 +205,12 @@ function RegisterPage() {
             <h2>Address Information</h2>
             <div className="address-inputs">
               <div className='address'>
-                <InputField label="City" type="text" error={errors.city} value={values.city} id="city" onChange={handleChange} onBlur={handleBlur} className={errors.city && touched.city ? "error" : ""} placeholder="Enter Your City" />
-                <InputField label="Woreda" type="text" error={errors.woreda} value={values.woreda} id="woreda" onChange={handleChange} onBlur={handleBlur} className={errors.woreda && touched.woreda ? "error" : ""} placeholder="Enter Your Woreda" />
+                <InputField label="City" type="text" error={errors.city && touched.city ? errors.city : ""} value={values.city} id="city" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your City" />
+                <InputField label="Woreda" type="text" error={errors.woreda && touched.woreda ? errors.woreda : ""} value={values.woreda} id="woreda" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your Woreda" />
               </div>
               <div className='address'>
-                <InputField label="Kebele" type="text" error={errors.kebele} value={values.kebele} id="kebele" onChange={handleChange} onBlur={handleBlur} className={errors.kebele && touched.fname ? "error" : ""} placeholder="Enter Your Kebele" />
-                <InputField label="House Number" type="number" error={errors.house_no} value={values.house_no} id="house_no" onChange={handleChange} onBlur={handleBlur} className={errors.house_no && touched.house_no ? "error" : ""} placeholder="Enter Your Kebele" />
+                <InputField label="Kebele" type="text" error={errors.kebele && touched.kebele ? errors.kebele : ""} value={values.kebele} id="kebele" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your Kebele" />
+                <InputField label="House Number" type="number" error={errors.house_no && touched.house_no ? errors.house_no : ""} value={values.house_no} id="house_no" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your Kebele" />
               </div>
             </div>
           </div>
@@ -244,12 +218,12 @@ function RegisterPage() {
             <h2>Registration Information</h2>
             <div className="registration-inputs">
               <div className="registration">
-                <InputField label="Year" type="number" error={errors.year} value={values.year} id="year" onChange={handleChange} onBlur={handleBlur} className={errors.year && touched.year ? "error" : ""} placeholder="Enter Your Year" />
-                <InputField label="Semester" type="number" error={errors.semester} value={values.semester} id="semester" onChange={handleChange} onBlur={handleBlur} className={errors.semester && touched.semester ? "error" : ""} placeholder="Enter Your Semester" />
+                <InputField label="Year" type="number" error={errors.year && touched.year ? errors.year : ""} value={values.year} id="year" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your Year" />
+                <InputField label="Semester" type="number" error={errors.semester && touched.semester ? errors.semester : ""} value={values.semester} id="semester" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your Semester" />
               </div>
               <div className="registration">
-                <InputField label="Program" type="text" error={errors.program} value={values.program} id="program" onChange={handleChange} onBlur={handleBlur} className={errors.program && touched.program ? "error" : ""} placeholder="Enter Your Program" />
-                <InputField label="Education Level" type="text" error={errors.level} value={values.level} id="level" onChange={handleChange} onBlur={handleBlur} className={errors.level && touched.level ? "error" : ""} placeholder="Enter Your Education Level" />
+                <InputField label="Program" type="text" error={errors.program && touched.program ? errors.program : ""} value={values.program} id="program" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your Program" />
+                <InputField label="Education Level" type="text" error={errors.level && touched.level ? errors.level : ""} value={values.level} id="level" onChange={handleChange} onBlur={handleBlur} className={errors.level && touched.level ? "error" : ""} placeholder="Enter Your Education Level" />
               </div>
             </div>
           </div>
@@ -257,12 +231,12 @@ function RegisterPage() {
             <h2>Educational Background</h2>
             <div className="educational-bg-inputs">
               <div className="educational-bg">
-                <InputField label="School Name" type="text" error={errors.school} value={values.school} id="school" onChange={handleChange} onBlur={handleBlur} className={errors.school && touched.school ? "error" : ""} placeholder="Enter Your School Name" />
-                <InputField label="Grade" type="text" error={errors.gpa} value={values.gpa} id="gpa" onChange={handleChange} onBlur={handleBlur} className={errors.gpa && touched.gpa ? "error" : ""} placeholder="Enter Your Grade" />
+                <InputField label="School Name" type="text" error={errors.school && touched.school ? errors.school : ""} value={values.school} id="school" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your School Name" />
+                <InputField label="Grade" type="text" error={errors.gpa && touched.gpa ? errors.gpa : ""} value={values.gpa} id="gpa" onChange={handleChange} onBlur={handleBlur} className={errors.gpa && touched.gpa ? "error" : ""} placeholder="Enter Your Grade" />
               </div>
               <div className="educational-bg">
-                <InputField label="Start Date" type="date" error={errors.start_date} value={values.start_date} id="start_date" onChange={handleChange} onBlur={handleBlur} className={errors.start_date && touched.start_date ? "error" : ""} placeholder="Enter Your Program" />
-                <InputField label="End Date" type="date" error={errors.end_date} value={values.end_date} id="end_date" onChange={handleChange} onBlur={handleBlur} className={errors.end_date && touched.end_date ? "error" : ""} placeholder="Enter Your Education Level" />
+                <InputField label="Start Date" type="date" error={errors.start_date && touched.start_date ? errors.start_date : ""} value={values.start_date} id="start_date" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your Program" />
+                <InputField label="End Date" type="date" error={errors.end_date && touched.end_date ? errors.end_date : ""} value={values.end_date} id="end_date" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Your Education Level" />
               </div>
             </div>
           </div>
@@ -270,9 +244,9 @@ function RegisterPage() {
             <h2>Emergency Contact</h2>
             <div className="emergency-inputs">
               <div className="emergency">
-                <InputField label="First Name" type="text" error={errors.efname} value={values.efname} id="efname" onChange={handleChange} onBlur={handleBlur} className={errors.efname && touched.efname ? "error" : ""} placeholder="Enter First Name" />
-                <InputField label="Middle Name" type="text" error={errors.emname} value={values.emname} id="emname" onChange={handleChange} onBlur={handleBlur} className={errors.emname && touched.emname ? "error" : ""} placeholder="Enter Middle Name" />
-                <InputField label="Last Name" type="text" error={errors.elname} value={values.elname} id="elname" onChange={handleChange} onBlur={handleBlur} className={errors.elname && touched.elname ? "error" : ""} placeholder="Enter Last Name" />
+                <InputField label="First Name" type="text" error={errors.efname && touched.efname ? errors.efname : ""} value={values.efname} id="efname" onChange={handleChange} onBlur={handleBlur} placeholder="Enter First Name" />
+                <InputField label="Middle Name" type="text" error={errors.emname && touched.emname ? errors.emname : ""} value={values.emname} id="emname" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Middle Name" />
+                <InputField label="Last Name" type="text" error={errors.elname && touched.elname ? errors.elname : ""} value={values.elname} id="elname" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Last Name" />
               </div>
               <div className="emergency">
                 <div className="selection-container">
@@ -283,21 +257,23 @@ function RegisterPage() {
                     <option value="Night">Legal Guardian</option>
                   </select>
                 </div>
-                <InputField label="Phone Number" type="Number" error={errors.ephonenumber} value={values.ephonenumber} id="ephonenumber" onChange={handleChange} onBlur={handleBlur} className={errors.ephonenumber && touched.ephonenumber ? "error" : ""} placeholder="Enter Phone Number" />
+                <InputField label="Phone Number" type="Number" error={errors.ephonenumber && touched.ephonenumber ? errors.ephonenumber : ""} value={values.ephonenumber} id="ephonenumber" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Phone Number" />
               </div>
             </div>
           </div>
           <div className="login-information">
             <h2>Login Information</h2>
             <div className="login-inputs">
-              <InputField label="Password" type="password" error={errors.password} value={values.password} id="password" onChange={handleChange} onBlur={handleBlur} className={errors.password && touched.fname ? "error" : ""} placeholder="Enter Password" />
-              <InputField label="Password" type="password" error={errors.confirm} value={values.confirm} id="confirm" onChange={handleChange} onBlur={handleBlur} className={errors.confirm && touched.fname ? "error" : ""} placeholder="Confirm Your confirm" />
+              <InputField label="Password" type="password" error={errors.password && touched.password ? errors.password : ""} value={values.password} id="password" onChange={handleChange} onBlur={handleBlur} placeholder="Enter Password" />
+              <InputField label="Password" type="password" error={errors.school && touched.school ? errors.confirm : ""} value={values.confirm} id="confirm" onChange={handleChange} onBlur={handleBlur} placeholder="Confirm Your confirm" />
             </div>
           </div>
           <div className="button-container">
-            {/* <Link to='/payment'> */}
-            <Button classNameo="handleSubmit" className="blue-bg white orange-hover" text="Continue to Payment" />
-            {/* </Link> */}
+            { error ? (<div>{error}</div>) : (
+                 <Link to='/payment'>
+                 <Button classNameo="handleSubmit" className="blue-bg white orange-hover" text="Continue to Payment" />
+               </Link>
+            )}
           </div>
         </div>
       </form>
