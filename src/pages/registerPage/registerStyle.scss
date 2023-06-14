@@ -105,7 +105,7 @@ input[type=number]::-webkit-outer-spin-button {
 
                 }
 
-                .type-phone {
+                .type-phone, .registration-information {
                     .selection-container {
                         display: flex;
                         justify-content: center;
@@ -143,6 +143,7 @@ input[type=number]::-webkit-outer-spin-button {
     .registration-information,
     .educational-bg-information,
     .emergency-information,
+    .registration-information,
     .login-information {
         display: flex;
         flex-direction: column;
@@ -183,6 +184,33 @@ input[type=number]::-webkit-outer-spin-button {
             flex: 1;
             gap: 30px;
 
+        }
+
+        .selection-container {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+            flex-direction: column;
+
+            label {
+                font-family: 'Raleway';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 23px;
+                color: #000000;
+                margin-bottom: 5px;
+            }
+
+            .selection {
+                background: rgba(163, 217, 249, 0.09);
+                border: 2px solid #03234E;
+                border-radius: 5px;
+                // min-width: 350px;
+                height: 55px;
+                padding: 5px 10px;
+                font-size: 18px;
+            }
         }
     }
 

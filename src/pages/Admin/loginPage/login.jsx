@@ -7,7 +7,7 @@ import LoginValidation from './validation'
 import { useFormik } from 'formik'
 
 const onSubmit = () => {
-    console.log("submit clicked")
+    // console.log("submit clicked")
 }
 function Login() {
     const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({

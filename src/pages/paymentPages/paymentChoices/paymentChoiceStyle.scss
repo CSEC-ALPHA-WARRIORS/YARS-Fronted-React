@@ -1,31 +1,66 @@
-.payment-choices-container{
-    padding: 30px 150px;
+.payment-choices-container {
+  padding: 30px 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 75px;
+    margin-bottom: 10px;
+  }
+  p {
+    width: 70%;
+    font-style: "Raleway";
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .payment-buttons {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 30px;
     align-items: center;
-    h1 {
-        font-family: 'Raleway';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 35px;
-        line-height: 75px;
-        margin-bottom: 10px;
-    }
-    p {
-        width: 70%;
-        font-style: 'Raleway';
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 25px;
-        text-align: center;
-        margin-bottom: 100px;
-    }
-    .payment-buttons{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 30px;
-        align-items: center;
-    }
+  }
+
+  .courses {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .courses td,
+  .courses th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  .courses tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .courses tr:hover {
+    background-color: #ddd;
+  }
+
+  .courses th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #1d6285;
+    color: white;
+  }
+
+  span {
+    font-family: "Raleway";
+    padding: 10px;
+    margin-bottom: 5px;
+  }
 }

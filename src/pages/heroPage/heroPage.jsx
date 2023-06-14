@@ -9,7 +9,7 @@ import './heroPage.scss'
 import data from './data.json'
 import { Link } from 'react-router-dom'
 function HeroPage() {
-    console.log(data.data);
+    // console.log(data.data);
     const vision = data.data.vision;
     const mission = data.data.mission;
     const value = data.data.value;

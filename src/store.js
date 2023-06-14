@@ -1,22 +1,24 @@
 import create from "zustand";
 import { persist } from "zustand/middleware";
 
-const useUser = create(
+const useStudentStore = create(
     persist(
         (set) => {
             return {
-                user: null,
+                student: null,
+                registration_id: null,
                 token: null,
 
-                setUser: (newUser) => set((state) => ({ ...state, user: newUser })),
+                setStudent: (newStudent) => set((state) => ({ ...state, student: newStudent })),
+                setId: (newId) => set((state) => ({ ...state, registration_id: newId })),
                 setToken: (newToken) => set((state) => ({ ...state, token:newToken })),
-                logout: () => set((state) => ({ ...state,user : null, token: null }))
+                logout: () => set((state) => ({ ...state,student : null, token: null }))
             }
         },
         {
-            name: "user-info"
+            name: "student-info"
         }
     )
 )
 
-export { useUser }
+export { useStudentStore }

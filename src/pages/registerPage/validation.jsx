@@ -96,14 +96,10 @@ const RegistrationValidation = yup.object().shape({
         .number()
         .required("Your Grade is required"),
     year: yup
-        .number()
-        .min(1900, "year must be after 1900")
-        .max(new Date().getFullYear(), "Year must be before the current year")
+        .string()
         .required("Year is required"),
     semester: yup
-        .number()
-        .positive()
-        .max(15)
+        .string()
         .required("Semester is Required"),
     program: yup
         .string()
