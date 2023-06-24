@@ -1,0 +1,105 @@
+.student-profile-container {
+    padding: 30px 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    h4 {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 47px;
+        text-align: left;
+        text-transform: capitalize;
+        color: #023047;
+        width: 100%;
+    }
+
+    .personal-information,
+    .address-container,
+    .emergency-contact-container,
+    .educational-bg {
+        display: flex;
+        flex-direction: column;
+        border-radius: 25px;
+        border: 1px solid #023047;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 30px 50px;
+        gap: 40px;
+
+        &:hover {
+            border: 1px solid rgb(107, 82, 37);
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        }
+    }
+
+    .personal-information {
+        .information {
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+
+            .profile-image {
+                img {
+                    width: 200px;
+                }
+            }
+
+            .text-information {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+
+                .full-name {
+                    display: flex;
+                    flex-direction: row;
+                    width: 100%;
+                    gap: 20px;
+                    justify-content: space-between;
+                }
+            }
+        }
+
+
+    }
+
+    .address-container {
+        .address-information {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+
+        }
+    }
+
+    .emergency-contact-container {
+        .emergency-contact-texts {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            width: 100%;
+            gap: 20px;
+
+            .address-row {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    .educational-bg {
+
+
+        .educational-information {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+
+        }
+
+
+    }
+}

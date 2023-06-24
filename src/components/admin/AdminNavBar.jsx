@@ -6,11 +6,11 @@ function AdminNavBar() {
         <nav>
             <h1>Astu</h1>
             <div className="nav-links">
-                <Link to='/admin/students'>Students</Link>
-                <Link to='/admin/admins'>Admins</Link>
-                <Link to='/admin/courses'>Courses</Link>
-                <Link to='/admin/registrations'>Registrations</Link>
-                <Link to='/admin/payments'>Payments</Link>
+                <Link to='/admin/students-list'>Students</Link>
+                <Link to='/admin/admins-list'>Admins</Link>
+                <Link to='/admin/course-list'>Courses</Link>
+                <Link to='/admin/registration-list'>Registrations</Link>
+                <Link to='/admin/payment'>Payments</Link>
 
             </div>
         </nav>

@@ -1,0 +1,98 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  flex-direction: row;
+  background-color: #023047;
+  padding: 0px 150px;
+}
+nav h1 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 40px;
+  text-transform: uppercase;
+  color: white;
+}
+nav .nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+nav .nav-links a {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.link {
+  text-decoration: none;
+}
+
+tbody {
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-bottom: 5px;
+  height: 40px;
+  cursor: pointer;
+}
+tbody:hover {
+  background-color: #e2e3e4;
+}
+tbody:active {
+  transform: scale(1.004);
+}
+tbody td {
+  padding: 10px 0px;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: left;
+  text-transform: capitalize;
+  padding-left: 10px;
+  text-align: center;
+  border: 2px solid #e4e4e4;
+}
+tbody .stud-name {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: left;
+  text-transform: capitalize;
+  padding-left: 10px;
+  color: black;
+}
+
+.label-container {
+  min-width: 200px;
+}
+.label-container h1 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 26px;
+  line-height: 42px;
+  text-align: left;
+  text-transform: capitalize;
+  width: 100%;
+}
+.label-container h3 {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 31px;
+  /* identical to box height */
+  text-align: left;
+  text-transform: capitalize;
+  color: #004198;
+  width: 100%;
+}
+
+.credit-hour {
+  text-align: center;
+}/*# sourceMappingURL=adminStyle.css.map */

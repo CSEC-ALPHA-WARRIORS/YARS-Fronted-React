@@ -10,6 +10,7 @@ function NavBar() {
         <Link to='/curriculum'>Curriculum</Link>
         <Link to='/register'>Register</Link>
         <Link to='/contact-us'>Contact us</Link>
+        <Link to='/admin'>Admin</Link>
         
       </div>
     </nav>

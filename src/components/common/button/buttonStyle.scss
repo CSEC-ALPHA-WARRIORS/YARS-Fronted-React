@@ -7,7 +7,7 @@
     line-height: 134%;
     border-radius: 59px;
     max-width: 600px;
-    min-width: 350px;
+    // min-width: 350px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 
@@ -29,8 +29,25 @@
     // width: 250px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    min-width: 350px;
 }
 .small-btn:hover{
+    color: #023047;
+    background-color: #FFB703;
+}
+.small-small-btn{
+    padding: 10px 0px;
+    font-family: "Raleway";
+    font-weight: 900;
+    // color: white;
+    width: 150px;
+    background-color: #FB8500;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.small-small-btn:hover{
     color: #023047;
     background-color: #FFB703;
 }
