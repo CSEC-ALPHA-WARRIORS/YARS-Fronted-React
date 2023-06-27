@@ -1,12 +1,13 @@
-import React from 'react'
-import AdminNavBar from '../../../components/admin/AdminNavBar'
-import './studentsStyle.scss'
-import StudentRow from '../../../components/admin/studentRow'
+import React from "react";
+import AdminNavBar from "../../../components/admin/AdminNavBar";
+import "./studentsStyle.scss";
+import StudentRow from "../../../components/admin/studentRow";
+import Footer from "../../../components/common/footer/footer";
 function StudentList() {
   return (
     <>
       <AdminNavBar />
-      <div className='student-container'>
+      <div className="student-container">
         <h1>Students</h1>
         <table>
           <thead>
@@ -29,8 +30,9 @@ function StudentList() {
           <StudentRow />
         </table>
       </div>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default StudentList
+export default StudentList;

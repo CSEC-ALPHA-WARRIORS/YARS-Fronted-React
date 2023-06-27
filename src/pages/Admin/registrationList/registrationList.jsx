@@ -14,13 +14,13 @@ function RegistrationList() {
             <tr>
               <th>#</th>
               <th>student id</th>
-              <th>YEAR</th>
-              <th>SEMESTER</th>
-              <th>PROGRAM</th>
-              <th>LEVEL</th>
-              <th>REGISTERED AT</th>
-              <th>STATUS</th>
-              <th>ACTION</th>
+              <th>Year</th>
+              <th>semester</th>
+              <th>program</th>
+              <th>level</th>
+              <th>registered at</th>
+              <th>status</th>
+              <th>action</th>
             </tr>
           </thead>
           <RegistrationRow />

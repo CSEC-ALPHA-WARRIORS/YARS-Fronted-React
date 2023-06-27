@@ -13,13 +13,13 @@ function PaymentList() {
           <thead>
             <tr>
               <th>#</th>
-              <th>REGISTRATION ID</th>
-              <th>AMOUNT</th>
-              <th>TYPE</th>
-              <th>RECEIPT URL</th>
-              <th>PAID AT</th>
-              <th>STATUS</th>
-              <th>ACTION</th>
+              <th>registration id</th>
+              <th>amount</th>
+              <th>type</th>
+              <th>receipt url</th>
+              <th>paid at</th>
+              <th>status</th>
+              <th>action</th>
             </tr>
           </thead>
           <PaymentRow />

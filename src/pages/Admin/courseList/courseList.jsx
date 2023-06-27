@@ -15,13 +15,13 @@ function CourseList() {
           <thead>
             <tr>
               <th>#</th>
-              <th>TITLE</th>
-              <th>CODE</th>
-              <th>SEMESTER</th>
-              <th>YEAR</th>
-              <th>PROGRAM</th>
-              <th>CREDIT HOUR</th>
-              <th>ACTION</th>
+              <th>Title</th>
+              <th>Code</th>
+              <th>Semester</th>
+              <th>Year</th>
+              <th>Program</th>
+              <th>Credit Hour</th>
+              <th>Action</th>
             </tr>
           </thead>
           <CourseRow />
