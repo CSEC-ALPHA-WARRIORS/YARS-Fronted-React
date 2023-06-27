@@ -8,17 +8,13 @@ import Button from "../../components/common/button/button";
 import axios from "axios";
 import { useFormik } from "formik";
 import RegistrationValidation from "./validation";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 function RegisterPage() {
-  const [profile_picture_url, setProfile_picture_url] = useState();
-  // const [type, setType] = useState("Regular");
+  
+  const [profile_picture_url, setProfile_picture_url] = useState("");
   const [img, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(uploadImage);
-  const [error, setError] = useState(null);
-  const [userToken, setUserToken] = useState();
-  // const [error, setError] = useState("error message");
   const navigate = useNavigate();
 
   const imageHandler = (event) => {
@@ -112,7 +108,7 @@ function RegisterPage() {
           navigate("/payment");
         })
         .catch((error) => {
-          setError(error.message);
+          alert(error.message);
         });
     });
   };
@@ -160,29 +156,28 @@ function RegisterPage() {
     });
 
   const upload = (callback) => {
-    // const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-    // const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
-    // // console.log(img)
+    const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+    const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+    
+    if(img) {
+      var bodyFormData = new FormData();
+      bodyFormData.append("file", img ? img : uploadImage);
+      bodyFormData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+      axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, bodyFormData).then(res => {
+        if (res.data.secure_url !== undefined) {
+          const uploadedFileUrl = res.data.secure_url;
+          setProfile_picture_url(uploadedFileUrl);
+          callback(uploadedFileUrl)
+        }
+      }).catch(error => {
+        console.log(error);
+        alert(error);
+      })
+    }else {
+      alert("please upload profile picture!!")
+    }
 
-    // // if (img === null) {
-    // //   // alert("Please upload img!!")
-    // //   console.log("null value")
-    // // } else {
-    // // console.log(img, uploadImage)
-    // var bodyFormData = new FormData();
-    // bodyFormData.append("file", img ? img : uploadImage);
-    // bodyFormData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-    // axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, bodyFormData).then(res => {
-    //   if (res.data.secure_url !== undefined) {
-    //     const uploadedFileUrl = res.data.secure_url;
-    //     setProfile_picture_url(uploadedFileUrl);
-    //     callback(uploadedFileUrl)
-    //   }
-    // }).catch(error => {
-    //   setError(error.message);
-    // })
-
-    callback("/src/assets/images/pngwing.com.png");
+    // callback("/src/assets/images/pngwing.com.png");
   };
 
   return (
