@@ -1,0 +1,67 @@
+.payment-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    padding: 30px 100px;
+    box-sizing: border-box;
+  
+    h1 {
+      font-family: "Raleway";
+      font-style: normal;
+      font-weight: 900;
+      font-size: 25px;
+      line-height: 75px;
+      margin-bottom: 10px;
+      text-align: left;
+      text-transform: uppercase;
+      width: 100%;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+  
+      th {
+        padding-left: 10px;
+        background-color: #023047;
+        color: white;
+        height: 50px;
+        font-family: "Raleway";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 28px;
+        text-align: center;
+        text-transform: capitalize;
+        border-collapse: collapse;
+        border-spacing: 55px 10px;
+        border: 2px solid #124761;
+      }
+    }
+    .add-course-container {
+      margin-top: 100px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .course-input-container {
+        width: 100%;
+        padding: 10px 100px;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        margin-bottom: 40px;
+        box-sizing: border-box;
+        .row {
+          display: flex;
+          gap: 20px;
+          width: 100%;
+        }
+      }
+    }
+  }
+  

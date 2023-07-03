@@ -7,7 +7,15 @@ nav {
   background-color: #023047;
   padding: 0px 150px;
 }
-nav h1 {
+nav .logo-header {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+nav .logo-header img {
+  width: 50px;
+}
+nav .logo-header h1 {
   font-family: "Raleway";
   font-style: normal;
   font-weight: 800;
@@ -19,8 +27,27 @@ nav .nav-links {
   display: flex;
   gap: 20px;
   align-items: center;
+  font-weight: bolder;
 }
-nav .nav-links a {
+nav .nav-links .nav {
   text-transform: capitalize;
-  font-weight: 500;
+  color: #fff;
+  font-size: 24px;
+  font-family: Raleway;
+  font-weight: 700;
+  background-color: #024262;
+  padding: 5px 12px;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+nav .nav-links .home {
+  background-color: #024262;
+  padding: 5px 12px;
+  border-radius: 10px;
+  color: #fb8500;
+}
+nav .nav-links .admin {
+  background-color: #024262;
+  padding: 5px 12px;
+  border-radius: 10px;
 }/*# sourceMappingURL=navBarStyle.css.map */

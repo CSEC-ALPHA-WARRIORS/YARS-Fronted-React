@@ -11,7 +11,12 @@ import ContactUs from '../pages/contactUs/contactUs';
 import ChapaPayment from '../pages/paymentPages/chapaPayment/chapaPayment';
 import StudentPortal from '../pages/studentPortal/studentPortal';
 import Login from '../pages/Admin/loginPage/login';
-import Students from '../pages/Admin/studentProfile/students';
+import StudentList from '../pages/Admin/studentList/studentList';
+import StudentProfile from '../pages/Admin/studentProfile/studentProfile';
+import AdminList from '../pages/Admin/adminList/adminList';
+import CourseList from '../pages/Admin/courseList/courseList';
+import RegistrationList from '../pages/Admin/registrationList/registrationList';
+import PaymentList from '../pages/Admin/paymentList/paymentList';
 function RoutePage() {
     return (
         <Routes >
@@ -19,13 +24,24 @@ function RoutePage() {
             <Route exact path='/register' Component={RegisterPage} />
             <Route exact path='/student-portal' Component={StudentPortal} />
             <Route exact path='/curriculum' Component={Curriculum} />
+            <Route exact path='/contact-us' Component={ContactUs} />
+
+            {/* Payment Routes */}
+
             <Route exact path='/payment' Component={PaymentChoices} />
             <Route exact path='/manual-payment' Component={ManualPayment} />
             <Route exact path='/chapa-payment' Component={ChapaPayment} />
             <Route exact path='/payment-successful' Component={PaymentSuccessful} />
-            <Route exact path='/contact-us' Component={ContactUs} />
+
+            {/* Admin Routes */}
+
             <Route exact path='/admin' Component={Login}/>
-            <Route path='/admin/students' Component={Students} />
+            <Route path='/admin/students-list' Component={StudentList} />
+            <Route path='/admin/student-profile' Component={StudentProfile} />
+            <Route path='/admin/admins-list' Component={AdminList}/>
+            <Route path='/admin/course-list' Component={CourseList}/>
+            <Route path='/admin/registration-list' Component={RegistrationList}/>
+            <Route path='/admin/payment' Component={PaymentList}/>
         </Routes>
     )
 }

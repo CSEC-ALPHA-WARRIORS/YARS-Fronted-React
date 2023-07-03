@@ -77,6 +77,14 @@ a:hover {
   color: #2F80ED;;
 }
 
+.green-bg {
+  background-color: #4CAF50;
+}
+
+.green {
+  color: #4CAF50;
+}
+
 .bm-10 {
   margin-bottom: 10px;
 }
