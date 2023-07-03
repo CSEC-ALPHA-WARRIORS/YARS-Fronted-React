@@ -34,7 +34,7 @@ function RegisterPage() {
   };
 
   const onSubmit = () => {
-    console.log("Clicked");
+    // console.log("Clicked");
     console.log(values.fname, "fname check");
 
     upload((uploadedFileUrl) => {
