@@ -8,7 +8,7 @@ import Button from "../../components/common/button/button";
 import axios from "axios";
 import { useFormik } from "formik";
 import RegistrationValidation from "./validation";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
   
@@ -108,7 +108,7 @@ function RegisterPage() {
           navigate("/payment");
         })
         .catch((error) => {
-          alert(error.message);
+          alert(error.response.data);
         });
     });
   };
