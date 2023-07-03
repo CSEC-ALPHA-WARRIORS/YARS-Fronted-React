@@ -78,14 +78,46 @@ function RegisterPage() {
           registered_at: new Date(),
         }
       }
-      // console.log(Student);
-      // console.log(Student.profile_picture_url);
-      axios.post('http://localhost:8000/api/register', Student).then(response => {
-        console.log(response);
-        
-      }).catch(error => {
-        setError(error.message)
+     
+      axios
+      .post("http://localhost:8000/api/register", Student)
+      .then((response) => {
+        console.log(
+          response.data.student,
+          response.data.token,
+          response.data.courses,
+          response.data.registration
+        );
+
+        var total_credit_hr = 0;
+        response.data.courses.map((course) => {
+          total_credit_hr = total_credit_hr + course.credit_hours;
+        });
+
+        window.localStorage.setItem(
+          "courses",
+          JSON.stringify(response.data.courses)
+        );
+
+        window.localStorage.setItem(
+          "token",
+          JSON.stringify(response.data.token)
+        );
+        window.localStorage.setItem(
+          "student",
+          JSON.stringify(response.data.student)
+        );
+        window.localStorage.setItem(
+          "registration_id",
+          JSON.stringify(response.data.registration.id)
+        );
+        window.localStorage.setItem("total_credit_hours", total_credit_hr);
+
+        navigate("/payment");
       })
+      .catch((error) => {
+        alert(error.response.data);
+      });
     })
 
 
