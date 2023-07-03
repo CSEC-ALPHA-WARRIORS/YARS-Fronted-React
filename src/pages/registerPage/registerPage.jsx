@@ -10,12 +10,15 @@ import { useFormik } from "formik";
 import RegistrationValidation from "./validation";
 import { useNavigate } from "react-router-dom";
 
+
 function RegisterPage() {
   
   const [profile_picture_url, setProfile_picture_url] = useState("");
   const [img, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(uploadImage);
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const [userToken, setUserToken] = useState();
 
   const imageHandler = (event) => {
     const selectedImage = event.target.files ? event.target.files[0] : null;
@@ -31,7 +34,6 @@ function RegisterPage() {
   };
 
   const onSubmit = () => {
-    console.log("submitted");
     upload((uploadedFileUrl) => {
       const Student = {
         fname: values.fname,
@@ -155,30 +157,30 @@ function RegisterPage() {
       onSubmit,
     });
 
-  const upload = (callback) => {
-    const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-    const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
-    
-    if(img) {
-      var bodyFormData = new FormData();
-      bodyFormData.append("file", img ? img : uploadImage);
-      bodyFormData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-      axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, bodyFormData).then(res => {
-        if (res.data.secure_url !== undefined) {
-          const uploadedFileUrl = res.data.secure_url;
-          setProfile_picture_url(uploadedFileUrl);
-          callback(uploadedFileUrl)
-        }
-      }).catch(error => {
-        console.log(error);
-        alert(error);
-      })
-    }else {
-      alert("please upload profile picture!!")
-    }
-
-    // callback("/src/assets/images/pngwing.com.png");
-  };
+    const upload = (callback) => {
+      const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+      const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+      
+      if(img) {
+        var bodyFormData = new FormData();
+        bodyFormData.append("file", img ? img : uploadImage);
+        bodyFormData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+        axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, bodyFormData).then(res => {
+          if (res.data.secure_url !== undefined) {
+            const uploadedFileUrl = res.data.secure_url;
+            setProfile_picture_url(uploadedFileUrl);
+            callback(uploadedFileUrl)
+          }
+        }).catch(error => {
+          console.log(error);
+          alert(error);
+        })
+      }else {
+        alert("please upload profile picture!!")
+      }
+  
+      // callback("/src/assets/images/pngwing.com.png");
+    };
 
   return (
     <>
@@ -574,6 +576,5 @@ function RegisterPage() {
       <Footer />
     </>
   );
-}
-
+              }              
 export default RegisterPage;
