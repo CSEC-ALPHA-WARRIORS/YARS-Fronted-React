@@ -9,6 +9,7 @@ import defaultIcon from "../../../assets/images/icons8-reciept-96.png";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
   bank_name: yup.string("Enter your bank name").required("Bank name is required"),
@@ -21,6 +22,7 @@ function ManualPayment() {
   const [img, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(defaultIcon);
   const [imgUrl, setImgUrl] = useState("");
+  const navigate = useNavigate();
 
   const total_credit_hours = window.localStorage.getItem("total_credit_hours");
   const token = JSON.parse(window.localStorage.getItem("token"));
@@ -49,12 +51,12 @@ function ManualPayment() {
       },
       validationSchema,
       onSubmit: (values) => {
-        // console.log(values, img);
-        console.log(token);
         upload((url) => {
+
+          console.log(url);
             const payment = {
                 amount: amount,
-                receipt_url: imgUrl,
+                receipt_url: url,
                 registration_id: reg_id,
                 type: "manual"
             }
@@ -64,14 +66,15 @@ function ManualPayment() {
                 maxBodyLength: Infinity,
                 url: "http://localhost:8000/api/pay",
                 headers: {
-                    "x-auth-token": token,
+                    "Authorization": "Bearer " + token,
                 },
-                body: payment
+                data: payment
             }
 
             axios.request(config)
             .then(result => {
                 console.log(result)
+                navigate("/payment-successful");
             }).catch(err => {
                 console.log(err);
                 alert(err.response.data.message);
@@ -91,6 +94,7 @@ function ManualPayment() {
           axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, bodyFormData).then(res => {
             if (res.data.secure_url !== undefined) {
               const uploadedFileUrl = res.data.secure_url;
+              console.log(uploadedFileUrl);
               setImgUrl(uploadedFileUrl);
               callback(uploadedFileUrl)
             }

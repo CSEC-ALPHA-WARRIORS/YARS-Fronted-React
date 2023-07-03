@@ -16,6 +16,7 @@ function PaymentChoices() {
   const amount = total_credit_hours * 150;
 
   const pay = () => {
+
     const token = window.localStorage.getItem("token");
     const reg_id = window.localStorage.getItem("registration_id");
 
@@ -74,7 +75,7 @@ function PaymentChoices() {
           <Button
             className="white blue-bg"
             text="PAY WITH CHAPA"
-            handler={pay}
+            onClick={pay}
           />
           <Link to="/manual-payment">
             <Button className="white blue-bg" text="MANUAL PAYMENT" />

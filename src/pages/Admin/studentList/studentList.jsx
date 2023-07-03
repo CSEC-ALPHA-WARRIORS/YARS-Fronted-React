@@ -7,13 +7,27 @@ import axios, { all } from "axios";
 function StudentList() {
   const [studentData, setStudentData] = useState([]);
 
+  // getting token from local storage
+  const token = window.localStorage.getItem("admin_token");
+
+
   useEffect(() => {
+
+    // setting header values for axios
+    let config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: 'http://localhost:8000/api/students',
+      headers: { 
+        'Content-Type': 'application/json', 
+        'Authorization': 'Bearer ' + token
+      },
+    };
+
     axios
-      .get("http://localhost:8000/api/students")
+      .request(config)
       .then((response) => {
         setStudentData(response.data);
-        // console.log(studentData);
-        // console.log(studentData.length);
       })
       .catch((error) => {
         console.log(error);

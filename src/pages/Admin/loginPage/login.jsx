@@ -5,15 +5,28 @@ import "./loginStyle.scss";
 import LoginImage from "../../../assets/images/loginImage.png";
 import LoginValidation from "./validation";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
 import NavBar from "../../../components/common/navBar/navBar";
 import Footer from '../../../components/common/footer/footer'
-const onSubmit = () => {
-
-}
-};
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+
+  const navigate = useNavigate();
+
+  const onSubmit = (e) => {
+    
+    axios.post("http://localhost:8000/api/admin/login", values).then(response => {
+      console.log(response);
+      
+      // storing token in localstorage
+      window.localStorage.setItem("admin_token", response.data.token);
+      navigate("/admin/students-list");
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
     useFormik({
       initialValues: {
@@ -24,6 +37,7 @@ function Login() {
       onSubmit,
     });
 
+
   return (
     <>
       <NavBar />
@@ -32,7 +46,7 @@ function Login() {
           <img src={LoginImage} alt="" />
         </div>
         <div className="right-side-container login">
-          <form action="">
+          <form onSubmit={handleSubmit}>
             <h1>Login</h1>
             <div className="login-input">
               {/* errors.mname && touched.mname */}
@@ -58,9 +72,7 @@ function Login() {
                 placeholder="Enter Password"
               />
             </div>
-            <Link to="/admin/students-list">
               <Button text="Login" className="small-btn" />
-            </Link>
           </form>
         </div>
       </div>

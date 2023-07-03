@@ -10,9 +10,7 @@ import { useFormik } from "formik";
 import RegistrationValidation from "./validation";
 import { useNavigate } from "react-router-dom";
 
-
 function RegisterPage() {
-  
   const [profile_picture_url, setProfile_picture_url] = useState("");
   const [img, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(uploadImage);
@@ -70,50 +68,48 @@ function RegisterPage() {
           program: values.program,
           level: values.level,
           registered_at: new Date(),
-        }
-      }
-     
+        },
+      };
+
       axios
-      .post("http://localhost:8000/api/register", Student)
-      .then((response) => {
-        console.log(
-          response.data.student,
-          response.data.token,
-          response.data.courses,
-          response.data.registration
-        );
+        .post("http://localhost:8000/api/register", Student)
+        .then((response) => {
 
-        var total_credit_hr = 0;
-        response.data.courses.map((course) => {
-          total_credit_hr = total_credit_hr + course.credit_hours;
+          var total_credit_hr = 0;
+          response.data.courses.map((course) => {
+            total_credit_hr = total_credit_hr + course.credit_hours;
+          });
+
+          window.localStorage.setItem(
+            "courses",
+            JSON.stringify(response.data.courses)
+          );
+
+          window.localStorage.setItem(
+            "token",
+            JSON.stringify(response.data.token)
+          );
+
+          window.localStorage.setItem(
+            "student",
+            JSON.stringify(response.data.student)
+          );
+
+          window.localStorage.setItem(
+            "registration_id",
+            JSON.stringify(response.data.registration.id)
+          );
+          
+          window.localStorage.setItem("total_credit_hours", total_credit_hr);
+
+          navigate("/payment");
+        })
+        .catch((error) => {
+          alert(error.response.data);
         });
-
-        window.localStorage.setItem(
-          "courses",
-          JSON.stringify(response.data.courses)
-        );
-
-        window.localStorage.setItem(
-          "token",
-          JSON.stringify(response.data.token)
-        );
-        window.localStorage.setItem(
-          "student",
-          JSON.stringify(response.data.student)
-        );
-        window.localStorage.setItem(
-          "registration_id",
-          JSON.stringify(response.data.registration.id)
-        );
-        window.localStorage.setItem("total_credit_hours", total_credit_hr);
-
-        navigate("/payment");
-      })
-      .catch((error) => {
-        alert(error.response.data);
-      });
-    })
+    });
   };
+
   const { handleBlur, errors, touched, handleChange, values, handleSubmit } =
     useFormik({
       initialValues: {
@@ -157,30 +153,37 @@ function RegisterPage() {
       onSubmit,
     });
 
-    const upload = (callback) => {
-      const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-      const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
-      
-      if(img) {
-        var bodyFormData = new FormData();
-        bodyFormData.append("file", img ? img : uploadImage);
-        bodyFormData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-        axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, bodyFormData).then(res => {
+  const upload = (callback) => {
+    const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
+    const CLOUDINARY_UPLOAD_PRESET = import.meta.env
+      .VITE_CLOUDINARY_UPLOAD_PRESET;
+
+    if (img) {
+      var bodyFormData = new FormData();
+      bodyFormData.append("file", img ? img : uploadImage);
+      bodyFormData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+      axios
+        .post(
+          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+          bodyFormData
+        )
+        .then((res) => {
           if (res.data.secure_url !== undefined) {
             const uploadedFileUrl = res.data.secure_url;
             setProfile_picture_url(uploadedFileUrl);
-            callback(uploadedFileUrl)
+            callback(uploadedFileUrl);
           }
-        }).catch(error => {
+        })
+        .catch((error) => {
           console.log(error);
           alert(error);
-        })
-      }else {
-        alert("please upload profile picture!!")
-      }
-  
-      // callback("/src/assets/images/pngwing.com.png");
-    };
+        });
+    } else {
+      alert("please upload profile picture!!");
+    }
+
+    // callback("/src/assets/images/pngwing.com.png");
+  };
 
   return (
     <>
@@ -576,5 +579,5 @@ function RegisterPage() {
       <Footer />
     </>
   );
-              }              
+}
 export default RegisterPage;
