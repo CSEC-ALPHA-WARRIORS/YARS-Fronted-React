@@ -1,15 +1,7 @@
-import React from 'react'
-import HeroPage from './pages/heroPage/heroPage'
-import './App.css'
-import RegisterPage from './pages/registerPage/registerPage'
-import RoutePage from './Routes/routes'
-import { BrowserRouter } from 'react-router-dom'
+import "./App.css";
+import RoutePage from "./Routes/routes";
 function App() {
-  return (
-    <div>
-      <RoutePage />
-    </div>
-  )
+	return <RoutePage />;
 }
 
-export default App
+export default App;
