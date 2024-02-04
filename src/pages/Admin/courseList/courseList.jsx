@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from "react";
 import Button from "../../../components/common/button/button";
 import InputField from "../../../components/common/inputField/inputField";
 import CourseRow from "../../../components/admin/courseRow";
 import AdminNavBar from "../../../components/admin/AdminNavBar";
 import "./courseListStyle.scss";
 import Footer from "../../../components/common/footer/footer";
-import axios from "axios";
 import { useFormik } from "formik";
 import AddCourseValidation from "./AddCourseValidation";
+import getAllCourses from "../../../utilities/api/Course.js";
+import { useQuery } from "@tanstack/react-query";
+
 
 function CourseList() {
-  const [courseList, setCourseList] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/courses")
-      .then((response) => {
-        setCourseList(response.data);
-        // console.log(courseList);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  
+  const Courses = useQuery({
+    queryFn: () => getAllCourses(),
+    queryKey:["Course"],
+  });
+  console.log(Courses);
   const onSubmit = (event) => {
     const Course = {
       title: values.title,
@@ -32,15 +26,15 @@ function CourseList() {
       program: values.program,
       credit_hours: values.credit_hours,
     };
-    axios
-      .post("http://localhost:8000/api/course/add", Course)
-      .then((response) => {
-        console.log(response);
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axios
+    //   .post("http://localhost:8000/api/course/add", Course)
+    //   .then((response) => {
+    //     console.log(response);
+    //     window.location.reload();
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
   const { handleBlur, values, errors, handleChange, touched, handleSubmit } =
     useFormik({
@@ -74,9 +68,9 @@ function CourseList() {
               <th>Action</th>
             </tr>
           </thead>
-          {courseList.map((courses, index) => (
+          {Courses.data?.map((courses, index) => (
             <CourseRow
-              id={index + 1}
+              key={index + 1}
               delId={courses.id}
               title={courses.title}
               code={courses.code}
