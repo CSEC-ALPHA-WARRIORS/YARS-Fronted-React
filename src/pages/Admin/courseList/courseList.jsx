@@ -7,7 +7,7 @@ import Footer from "../../../components/common/footer/footer";
 import { useFormik } from "formik";
 import AddCourseValidation from "./AddCourseValidation";
 import CoursesServes from "../../../utilities/api/Course";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 
 function CourseList() {
@@ -16,7 +16,14 @@ function CourseList() {
     queryFn: () => CoursesServes.getAllCourses(),
     queryKey:["Course"],
   });
+  const queryclient = useQueryClient();
   console.log(Courses);
+  const addcoures = useMutation({
+    mutationFn: CoursesServes.addCourses,
+    onSuccess: () => {
+      queryclient.invalidateQueries(["Course"]);
+    }
+  });
   const onSubmit = (event) => {
     const Course = {
       title: values.title,
@@ -26,6 +33,8 @@ function CourseList() {
       program: values.program,
       credit_hours: values.credit_hours,
     };
+    addcoures.mutate(Course);
+    
     // axios
     //   .post("http://localhost:8000/api/course/add", Course)
     //   .then((response) => {

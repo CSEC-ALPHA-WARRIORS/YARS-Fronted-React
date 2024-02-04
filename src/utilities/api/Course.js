@@ -17,7 +17,6 @@ const getAllCourses = async () => {
 	return Coureses;
 };
 const deleteCourses = async (id) => {
-	console.log("herer");
 	const delCoureses = await axios
 		.delete(
 			`${baseUrl}`+'/course/remove/'+id,
@@ -32,6 +31,22 @@ const deleteCourses = async (id) => {
 		.then((res) => res.data);
 	return delCoureses;
 };
+const addCourses = async (Course) => {
+	console.log(Course);
+	const delCoureses = await axios
+		.post(
+			`${baseUrl}`+'/course/add',Course,
+			withAdminTokenHeader({
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+               
+				},
+			})
+		)
+		.then((res) => res.data);
+	return delCoureses;
+};
 
-const CoursesServes = { getAllCourses,deleteCourses };
+const CoursesServes = { getAllCourses,deleteCourses,addCourses };
 export default CoursesServes;
