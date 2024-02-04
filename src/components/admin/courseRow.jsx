@@ -2,7 +2,8 @@ import React from "react";
 import "./adminStyle.scss";
 import { Link } from "react-router-dom";
 import Button from "../common/button/button";
-import axios from "axios";
+import {  useMutation, useQueryClient } from "@tanstack/react-query";
+import CoursesServes from "../../utilities/api/Course";
 function CourseRow({
   id,
   delId,
@@ -13,16 +14,15 @@ function CourseRow({
   program,
   creditHr,
 }) {
+  const queryclient = useQueryClient();
+  const del_course = useMutation({
+    mutationFn: CoursesServes.deleteCourses,
+    onSuccess: () => {
+      queryclient.invalidateQueries(["Course"]);
+    }
+  });
   const handleClick = (event) => {
-    axios
-      .delete(`http://localhost:8000/api/course/remove/${delId}`)
-      .then((response) => {
-        console.log(response);
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    del_course.mutate(delId);
   };
   return (
     <>
