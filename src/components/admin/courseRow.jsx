@@ -24,6 +24,9 @@ function CourseRow({
   const handleClick = (event) => {
     del_course.mutate(delId);
   };
+  const handleUpdate = (event) => {
+     console.log("update")
+  };
   return (
     <>
       <tbody>
@@ -43,6 +46,11 @@ function CourseRow({
             text="Delete"
             onClick={handleClick}
             className="small-small-btn"
+          />
+          <Button
+            text="Update"
+            onClick={handleUpdate}
+            className="blue-bg white small-small-btn"
           />
         </td>
       </tbody>
