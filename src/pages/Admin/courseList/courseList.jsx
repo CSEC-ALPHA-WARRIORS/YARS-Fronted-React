@@ -6,14 +6,14 @@ import "./courseListStyle.scss";
 import Footer from "../../../components/common/footer/footer";
 import { useFormik } from "formik";
 import AddCourseValidation from "./AddCourseValidation";
-import getAllCourses from "../../../utilities/api/Course.js";
+import CoursesServes from "../../../utilities/api/Course";
 import { useQuery } from "@tanstack/react-query";
 
 
 function CourseList() {
   
   const Courses = useQuery({
-    queryFn: () => getAllCourses(),
+    queryFn: () => CoursesServes.getAllCourses(),
     queryKey:["Course"],
   });
   console.log(Courses);
