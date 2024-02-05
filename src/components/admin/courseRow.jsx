@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "../common/button/button";
 import {  useMutation, useQueryClient } from "@tanstack/react-query";
 import CoursesServes from "../../utilities/api/Course";
+import { useState } from "react";
 function CourseRow({
   id,
   delId,
@@ -13,7 +14,8 @@ function CourseRow({
   semester,
   program,
   creditHr,
-}) {
+  testfun
+},) {
   const queryclient = useQueryClient();
   const del_course = useMutation({
     mutationFn: CoursesServes.deleteCourses,
@@ -21,12 +23,25 @@ function CourseRow({
       queryclient.invalidateQueries(["Course"]);
     }
   });
-  const handleClick = (event) => {
+  const Course = {
+  id,
+  delId,
+  title,
+  code,
+  year,
+  semester,
+  program,
+  creditHr,
+  testfun
+  }
+  Course.id = delId;
+  const handleClick = (event,) => {
     del_course.mutate(delId);
   };
   const handleUpdate = (event) => {
-     console.log("update")
+    testfun(Course);
   };
+ 
   return (
     <>
       <tbody>

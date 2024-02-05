@@ -8,14 +8,31 @@ import { useFormik } from "formik";
 import AddCourseValidation from "./AddCourseValidation";
 import CoursesServes from "../../../utilities/api/Course";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 
 function CourseList() {
-  
+  const [btn, setbtn] = useState("ADD COURSE");
+  const [flag, setflag] = useState(true);
+  let cor = {
+        title: "",
+        code: "",
+        year: "",
+        semester: "",
+        program: "",
+        credit_hours: "",
+  }
+  let testfun = (Cours) => {
+    setbtn("EDIT COURSE");
+    setValues(Cours);
+    setflag(false);
+    
+  }
   const Courses = useQuery({
     queryFn: () => CoursesServes.getAllCourses(),
     queryKey:["Course"],
   });
+
   const queryclient = useQueryClient();
   console.log(Courses);
   const addcoures = useMutation({
@@ -33,37 +50,34 @@ function CourseList() {
       program: values.program,
       credit_hours: values.credit_hours,
     };
-    addcoures.mutate(Course);
+    if (!flag) {
+      console.log("jk");
+      setbtn("ADD COURSE");
+      setbtn(true);
+      
+      
+    } else {
+      addcoures.mutate(Course);
+      setValues(cor);
+    }
     
-    // axios
-    //   .post("http://localhost:8000/api/course/add", Course)
-    //   .then((response) => {
-    //     console.log(response);
-    //     window.location.reload();
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    
+   
   };
-  const { handleBlur, values, errors, handleChange, touched, handleSubmit } =
+  const { handleBlur, values, errors, handleChange, touched, handleSubmit, setValues } =
     useFormik({
-      initialValues: {
-        title: "",
-        code: "",
-        year: "",
-        semester: "",
-        program: "",
-        credit_hours: "",
-      },
+      initialValues: cor,
       validationSchema: AddCourseValidation,
       onSubmit,
     });
+  
+  
 
   return (
     <>
       <AdminNavBar />
       <div className="course-container">
-        <h1>Courses</h1>
+        <h1>{btn}</h1>
         <table>
           <thead>
             <tr>
@@ -87,6 +101,7 @@ function CourseList() {
               semester={courses.semester}
               program={courses.program}
               creditHr={courses.credit_hours}
+              testfun={testfun}
             />
           ))}
         </table>
@@ -172,7 +187,7 @@ function CourseList() {
             </div>
             <Button
               className="small-btn blue-black-bg white"
-              text="ADD COURSE"
+              text={btn}
             />
           </div>
         </form>
