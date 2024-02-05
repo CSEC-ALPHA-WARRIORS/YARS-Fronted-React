@@ -13,7 +13,7 @@ function CourseRow({
   year,
   semester,
   program,
-  creditHr,
+  credit_hours,
   testfun
 },) {
   const queryclient = useQueryClient();
@@ -31,7 +31,7 @@ function CourseRow({
   year,
   semester,
   program,
-  creditHr,
+  credit_hours,
   testfun
   }
   Course.id = delId;
@@ -55,7 +55,7 @@ function CourseRow({
         <td>{year}</td>
         <td>{semester}</td>
         <td>{program}</td>
-        <td className="credit-hour">{creditHr}</td>
+        <td className="credit-hour">{credit_hours}</td>
         <td>
           <Button
             text="Delete"

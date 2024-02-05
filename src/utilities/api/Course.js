@@ -47,6 +47,21 @@ const addCourses = async (Course) => {
 		.then((res) => res.data);
 	return delCoureses;
 };
-
-const CoursesServes = { getAllCourses,deleteCourses,addCourses };
+const editCourses = async (Course) => {
+	console.log(Course);
+	const ediCoureses = await axios1
+		.put(
+			`${baseUrl}`+'/course/edit'+Course.id,Course,
+			withAdminTokenHeader({
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+               
+				},
+			})
+		)
+		.then((res) => res.data);
+	return ediCoureses;
+};
+const CoursesServes = { getAllCourses,deleteCourses,addCourses,editCourses };
 export default CoursesServes;

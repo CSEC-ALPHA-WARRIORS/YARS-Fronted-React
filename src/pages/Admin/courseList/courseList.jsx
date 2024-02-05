@@ -33,10 +33,17 @@ function CourseList() {
     queryKey:["Course"],
   });
 
+
   const queryclient = useQueryClient();
   console.log(Courses);
   const addcoures = useMutation({
     mutationFn: CoursesServes.addCourses,
+    onSuccess: () => {
+      queryclient.invalidateQueries(["Course"]);
+    }
+  });
+   const editcoures = useMutation({
+    mutationFn: CoursesServes.editCourses,
     onSuccess: () => {
       queryclient.invalidateQueries(["Course"]);
     }
@@ -49,12 +56,13 @@ function CourseList() {
       semester: values.semester,
       program: values.program,
       credit_hours: values.credit_hours,
+      id: values.id
     };
     if (!flag) {
-      console.log("jk");
+      console.log(Course);
+      setflag(true);
       setbtn("ADD COURSE");
-      setbtn(true);
-      
+      editcoures.mutate(Course)
       
     } else {
       addcoures.mutate(Course);
@@ -100,7 +108,7 @@ function CourseList() {
               year={courses.year}
               semester={courses.semester}
               program={courses.program}
-              creditHr={courses.credit_hours}
+              credit_hours={courses.credit_hours}
               testfun={testfun}
             />
           ))}
@@ -108,7 +116,7 @@ function CourseList() {
 
         <form action="" onSubmit={handleSubmit}>
           <div className="add-course-container">
-            <h1>Add Course</h1>
+            <h1>{btn}</h1>
             <div className="course-input-container">
               <div className="row">
                 <InputField
