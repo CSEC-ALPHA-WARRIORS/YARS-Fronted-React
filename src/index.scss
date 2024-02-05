@@ -1,65 +1,74 @@
-*{
-  margin: 0;
-  padding: 0;
-  outline: none;
-  border: none;
-  background-color: none;
-  text-decoration: none;
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	border: none;
+	background-color: none;
+	text-decoration: none;
+	font-family: "raleway", sans-serif;
 }
 
 a {
-  color:white;
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 900;
-  font-size: 20px;
-  line-height: 134%;
-  text-transform: uppercase;
-  transition: all 0.2s ease-in-out;
-  &:hover{
-    color: #FFB703;
+	color: white;
+	font-family: "raleway";
+	font-style: normal;
+	font-weight: 900;
+	font-size: 20px;
+	line-height: 134%;
+	text-transform: uppercase;
+	transition: all 0.2s ease-in-out;
+	&:hover {
+		color: #ffb703;
+	}
 }
-};
 
+.flex {
+	display: flex;
+}
+.flex-row {
+	flex-direction: row;
+}
+.flex-col {
+	flex-direction: col;
+}
 
 $bg-colors: (
-  'black':'#000',
-  'white':'white',
-  'blue-black':'#023047',
-  'gray':'rgba(255, 255, 255, 0.19)',
-  'orange':'#FB8500',
-  'white-gray':'rgba(251, 133, 0, 0.13)',
-  'blue':'#2F80ED;',
-  'green':'#4CAF50'
+	"black": "#000",
+	"white": "white",
+	"blue-black": "#023047",
+	"gray": "rgba(255, 255, 255, 0.19)",
+	"orange": "#FB8500",
+	"white-gray": "rgba(251, 133, 0, 0.13)",
+	"blue": "#2F80ED;",
+	"green": "#4CAF50",
 );
 
 // background-colors
 @each $key, $value in $bg-colors {
-  .#{$key}-bg{
-    background-color: #{$value};
-  };
-  .#{$key}{
-    color: #{$value};
-  }
-};
+	.#{$key}-bg {
+		background-color: #{$value};
+	}
+	.#{$key} {
+		color: #{$value};
+	}
+}
 $margins: (
-  'm-10':'10px',
-  'm-20':'20px',
-  'm-30':'30px',
-  'm-40':'40px',
-  'm-50':'50px',
-  'm-60':'60px',
-  'm-70':'70px',
-  'm-80':'80px',
-  'm-90':'90px',
-  'm-100':'100px'
+	"m-10": "10px",
+	"m-20": "20px",
+	"m-30": "30px",
+	"m-40": "40px",
+	"m-50": "50px",
+	"m-60": "60px",
+	"m-70": "70px",
+	"m-80": "80px",
+	"m-90": "90px",
+	"m-100": "100px",
 );
 @each $key, $value in $margins {
-  .b#{$key}{
-    margin-bottom: #{$value};
-  };
-  .t#{$key}{
-    margin-top: #{$value};
-  }
-};
-
+	.b#{$key} {
+		margin-bottom: #{$value};
+	}
+	.t#{$key} {
+		margin-top: #{$value};
+	}
+}

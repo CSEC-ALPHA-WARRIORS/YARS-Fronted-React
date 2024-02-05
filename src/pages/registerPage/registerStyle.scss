@@ -1,272 +1,304 @@
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 .register-page {
-    padding: 30px 150px;
-    display: flex;
-    justify-content: left;
-    gap: 50px;
-    flex-direction: column;
+	padding: 30px 150px;
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	gap: 50px;
+	font-family: "raleway";
 
-    .register-description {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
+	.register-description {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 20px;
 
-        h1 {
-            font-family: 'Raleway';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 35px;
-            line-height: 75px;
-            margin-bottom: 10px;
-        }
+		h1 {
+			font-style: normal;
+			font-weight: 700;
+			font-size: 35px;
+			line-height: 75px;
+			margin-bottom: 4px;
+		}
 
-        p {
-            width: 70%;
-            font-style: 'Raleway';
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 25px;
-            text-align: justify;
-        }
-    }
+		p {
+			width: 70%;
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 25px;
+			text-align: justify;
+		}
+	}
 
-    .personal-information {
-        display: flex;
-        justify-content: left;
-        flex-direction: column;
-        gap: 20px;
+	.personal-information {
+		display: flex;
+		justify-content: left;
+		flex-direction: column;
+		gap: 20px;
+		font-family: "raleway";
 
-        .personal-information-inputs {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-            align-items: center;
-            gap: 100px;
-            // flex-wrap: wrap;
+		.personal-information-inputs {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row;
+			gap: 30px;
 
+			.img-uploader {
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+				gap: 10px;
+				justify-content: center;
+				width: 250px;
+				height: 250px;
+				cursor: pointer;
 
-            .img-uploader {
-                // background: rgba(0, 0, 0, 0.1);
-                border-radius: 15px;
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                gap: 10px;
-                justify-content: center;
-                width: 400px;
-                height: 250px;
-                margin: 30px;
-                cursor: pointer;
+				.ppimage {
+					background-color: #03234e;
+					border: 3px solid #ddf;
+					height: 100%;
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					border-radius: 10px;
 
-                .ppimage {
-                    background-color: #03234E;
-                    height: 100%;
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 30%;
-                    img {
-                        width: 100%;
-                        border-radius: 30%;
-                        height: 100%;
+					img {
+						border-radius: 10px;
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+						cursor: pointer;
+					}
+				}
+				h2 {
+					font-size: smaller;
+					margin-top: 10px;
+				}
 
-                        cursor: pointer;
+				#profileImg {
+					display: none;
+				}
+			}
 
-                    }
-                }
+			.information-inputs {
+				display: flex;
 
+				width: 100%;
+				gap: 20px;
+				flex-direction: column;
 
-                #profileImg {
-                    display: none;
-                }
-            }
+				.subtitle {
+					font-size: 18px;
+					color: #656565;
+				}
 
-            .information-inputs {
-                display: flex;
-                width: 100%;
-                gap: 20px;
-                flex-direction: column;
+				.fist-middle-name,
+				.last-name,
+				.type-phone,
+				.row-container {
+					display: flex;
+					justify-content: center;
+					align-items: flex-start;
+					flex-direction: row;
+					gap: 20px;
+					flex-wrap: wrap;
+					margin-bottom: 16px;
+				}
 
-                .fist-middle-name,
-                .last-name,
-                .type-phone {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    flex-direction: row;
-                    gap: 20px;
-                    flex-wrap: wrap;
+				.type-phone,
+				.registration-information {
+					.selection-container {
+						display: flex;
+						justify-content: center;
+						flex: 1;
+						flex-direction: column;
 
-                }
+						label {
+							font-family: "Raleway";
+							font-style: normal;
+							font-weight: 600;
+							font-size: 16px;
+							line-height: 23px;
+							color: #000000;
+							margin-bottom: 5px;
+						}
 
-                .type-phone, .registration-information {
-                    .selection-container {
-                        display: flex;
-                        justify-content: center;
-                        flex: 1;
-                        flex-direction: column;
+						.selection {
+							background: rgba(163, 217, 249, 0.09);
+							border: 2px solid #03234e;
+							border-radius: 5px;
+							// min-width: 350px;
+							height: 55px;
+							padding: 5px 10px;
+							font-size: 18px;
+						}
+					}
+				}
+			}
+		}
+	}
 
-                        label {
-                            font-family: 'Raleway';
-                            font-style: normal;
-                            font-weight: 600;
-                            font-size: 16px;
-                            line-height: 23px;
-                            color: #000000;
-                            margin-bottom: 5px;
-                        }
+	.address-information,
+	.registration-information,
+	.educational-bg-information,
+	.emergency-information,
+	.registration-information,
+	.login-information {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		width: 100%;
 
-                        .selection {
-                            background: rgba(163, 217, 249, 0.09);
-                            border: 2px solid #03234E;
-                            border-radius: 5px;
-                            // min-width: 350px;
-                            height: 55px;
-                            padding: 5px 10px;
-                            font-size: 18px;
-                        }
-                    }
+		.address-inputs,
+		.registration-inputs,
+		.educational-bg-inputs,
+		.emergency-inputs,
+		.login-inputs {
+			display: flex;
+			justify-content: space-between;
+			gap: 30px;
+			flex-wrap: wrap;
 
-                }
-            }
-        }
+			.educational-bg {
+				align-items: flex-start;
+			}
+		}
 
-    }
+		.address-inputs {
+			display: flex;
+			flex-direction: column;
 
-    .address-information,
-    .registration-information,
-    .educational-bg-information,
-    .emergency-information,
-    .registration-information,
-    .login-information {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 100%;
+			.address {
+				display: flex;
+				flex: 1;
+				flex-direction: row;
+				gap: 30px;
+			}
+		}
+	}
 
-        .address-inputs,
-        .registration-inputs,
-        .educational-bg-inputs,
-        .emergency-inputs,
-        .login-inputs {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+	.registration-inputs {
+		display: flex;
+		flex-direction: column;
 
-        .address-inputs {
-            display: flex;
-            flex-direction: column;
+		.registration {
+			display: flex;
+			flex-direction: row;
+			flex: 1;
+			gap: 30px;
+		}
 
-            .address {
-                display: flex;
-                flex: 1;
-                flex-direction: row;
-                gap: 30px;
-            }
-        }
-    }
+		.selection-container {
+			display: flex;
+			justify-content: center;
+			flex: 1;
+			flex-direction: column;
 
-    .registration-inputs {
-        display: flex;
-        flex-direction: column;
+			label {
+				font-family: "Raleway";
+				font-style: normal;
+				font-weight: 600;
+				font-size: 16px;
+				line-height: 23px;
+				color: #000000;
+				margin-bottom: 5px;
+			}
 
-        .registration {
-            display: flex;
-            flex-direction: row;
-            flex: 1;
-            gap: 30px;
+			.selection {
+				background: rgba(163, 217, 249, 0.09);
+				border: 2px solid #03234e;
+				border-radius: 5px;
+				// min-width: 350px;
+				height: 55px;
+				padding: 5px 10px;
+				font-size: 18px;
+			}
+		}
+	}
 
-        }
+	.educational-bg-inputs {
+		display: flex;
+		flex-direction: column;
 
-        .selection-container {
-            display: flex;
-            justify-content: center;
-            flex: 1;
-            flex-direction: column;
+		.educational-bg {
+			display: flex;
+			flex-direction: row;
+			gap: 30px;
+		}
+	}
 
-            label {
-                font-family: 'Raleway';
-                font-style: normal;
-                font-weight: 600;
-                font-size: 16px;
-                line-height: 23px;
-                color: #000000;
-                margin-bottom: 5px;
-            }
+	.emergency-inputs {
+		display: flex;
+		flex-direction: column;
 
-            .selection {
-                background: rgba(163, 217, 249, 0.09);
-                border: 2px solid #03234E;
-                border-radius: 5px;
-                // min-width: 350px;
-                height: 55px;
-                padding: 5px 10px;
-                font-size: 18px;
-            }
-        }
-    }
+		.emergency {
+			display: flex;
+			align-items: flex-start;
+			flex-direction: row;
+			gap: 30px;
 
-    .educational-bg-inputs {
-        display: flex;
-        flex-direction: column;
+			.selection-container {
+				display: flex;
+				justify-content: center;
+				flex: 1;
+				flex-direction: column;
 
-        .educational-bg {
-            display: flex;
-            flex-direction: row;
-            gap: 30px;
-        }
-    }
+				label {
+					font-family: "Raleway";
+					font-style: normal;
+					font-weight: 600;
+					font-size: 16px;
+					line-height: 23px;
+					color: #000000;
+					margin-bottom: 5px;
+				}
 
-    .emergency-inputs {
-        display: flex;
-        flex-direction: column;
+				.selection {
+					background: rgba(163, 217, 249, 0.09);
+					border: 2px solid #03234e;
+					border-radius: 5px;
+					// min-width: 350px;
+					height: 55px;
+					padding: 5px 10px;
+					font-size: 18px;
+				}
+			}
+		}
+	}
 
-        .emergency {
-            display: flex;
-            flex-direction: row;
-            gap: 30px;
+	.button-container {
+		margin-top: 50px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+}
 
-            .selection-container {
-                display: flex;
-                justify-content: center;
-                flex: 1;
-                flex-direction: column;
+.register-stepper-step {
+	background-color: #03234e;
+}
 
-                label {
-                    font-family: 'Raleway';
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 16px;
-                    line-height: 23px;
-                    color: #000000;
-                    margin-bottom: 5px;
-                }
+.submit-button {
+	transition: all 200ms ease-in-out;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	margin-top: 20px;
+	align-self: flex-end;
+	padding: 14px 28px;
+	background-color: #03234e;
+	color: white;
+	border-radius: 4px;
+	font-size: 18px;
 
-                .selection {
-                    background: rgba(163, 217, 249, 0.09);
-                    border: 2px solid #03234E;
-                    border-radius: 5px;
-                    // min-width: 350px;
-                    height: 55px;
-                    padding: 5px 10px;
-                    font-size: 18px;
-                }
-            }
-        }
-    }
-
-    .button-container {
-        margin-top: 50px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
+	&:disabled {
+		background: #eee;
+		color: #aaa;
+	}
 }
