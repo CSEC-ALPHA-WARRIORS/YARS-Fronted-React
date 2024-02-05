@@ -22,7 +22,7 @@ function CourseList() {
         program: "",
         credit_hours: "",
   }
-  let testfun = (Cours) => {
+  let updatehandlerFun = (Cours) => {
     setbtn("EDIT COURSE");
     setValues(Cours);
     setflag(false);
@@ -62,7 +62,8 @@ function CourseList() {
       console.log(Course);
       setflag(true);
       setbtn("ADD COURSE");
-      editcoures.mutate(Course)
+      editcoures.mutate(Course);
+      setValues(cor);
       
     } else {
       addcoures.mutate(Course);
@@ -109,7 +110,7 @@ function CourseList() {
               semester={courses.semester}
               program={courses.program}
               credit_hours={courses.credit_hours}
-              testfun={testfun}
+              updatehandlerFun={updatehandlerFun}
             />
           ))}
         </table>

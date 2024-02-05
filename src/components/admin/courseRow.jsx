@@ -14,15 +14,20 @@ function CourseRow({
   semester,
   program,
   credit_hours,
-  testfun
+  updatehandlerFun
 },) {
+  
   const queryclient = useQueryClient();
+
+  //delete handler mutation
+
   const del_course = useMutation({
     mutationFn: CoursesServes.deleteCourses,
     onSuccess: () => {
       queryclient.invalidateQueries(["Course"]);
     }
   });
+
   const Course = {
   id,
   delId,
@@ -32,14 +37,14 @@ function CourseRow({
   semester,
   program,
   credit_hours,
-  testfun
+  updatehandlerFun
   }
   Course.id = delId;
   const handleClick = (event,) => {
     del_course.mutate(delId);
   };
   const handleUpdate = (event) => {
-    testfun(Course);
+    updatehandlerFun(Course);
   };
  
   return (

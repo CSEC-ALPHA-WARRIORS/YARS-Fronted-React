@@ -1,6 +1,6 @@
 import axios from "axios";
 import { baseUrl, withAdminTokenHeader } from "./api.config";
-
+//get all course request handler
 const getAllCourses = async () => {
 	const Coureses = await axios
 		.get(
@@ -16,6 +16,11 @@ const getAllCourses = async () => {
 		.then((res) => res.data);
 	return Coureses;
 };
+
+
+//delete request handler
+
+
 const deleteCourses = async (id) => {
 	const delCoureses = await axios
 		.delete(
@@ -49,9 +54,9 @@ const addCourses = async (Course) => {
 };
 const editCourses = async (Course) => {
 	console.log(Course);
-	const ediCoureses = await axios1
+	const ediCoureses = await axios
 		.put(
-			`${baseUrl}`+'/course/edit'+Course.id,Course,
+			`${baseUrl}`+'/course/edit/'+Course.id,Course,
 			withAdminTokenHeader({
 				headers: {
 					"Content-Type": "application/json",
