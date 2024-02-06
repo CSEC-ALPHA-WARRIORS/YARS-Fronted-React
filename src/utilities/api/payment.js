@@ -1,5 +1,6 @@
 import axios from "axios";
 import { baseUrl, withAdminTokenHeader } from "./api.config";
+import { CLOUDINARY_UPLOAD_PRESET, CLOUD_NAME } from "../config/env";
 
 const payWithChapa = async (amount) => {
 	const token = window.localStorage.getItem("token");
@@ -25,8 +26,48 @@ const payWithChapa = async (amount) => {
 	return response.url;
 };
 
+const payManually = async (amount, url) => {
+	const token = window.localStorage.getItem("token");
+	const reg_id = window.localStorage.getItem("registration_id");
+
+	const data = {
+		amount: amount,
+		receipt_url: url,
+		registration_id: reg_id,
+		type: "manual",
+	};
+
+	return await axios
+		.post(
+			baseUrl + "/api/pay",
+			data,
+			withAdminTokenHeader({
+				Authorization: `Bearer ${token}`,
+			})
+		)
+		.then((result) => {
+			return result.data;
+		});
+};
+
+const uploadReceipt = async (receipt) => {
+	var bodyFormData = new FormData();
+	bodyFormData.append("file", receipt ? receipt : "");
+	bodyFormData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+	const response = await axios
+		.post(
+			`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+			bodyFormData
+		)
+		.then((res) => res.data);
+	return response.secure_url;
+};
+
 const PaymentServices = {
 	payWithChapa,
+	payManually,
+	uploadReceipt,
 };
 
 export default PaymentServices;

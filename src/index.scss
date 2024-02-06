@@ -31,6 +31,13 @@ a {
 .flex-col {
 	flex-direction: col;
 }
+.items-center {
+	align-items: center;
+}
+
+.justify-center {
+	justify-content: center;
+}
 
 $bg-colors: (
 	"black": "#000",

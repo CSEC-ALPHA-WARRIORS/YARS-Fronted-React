@@ -10,6 +10,10 @@ import { useFormik } from "formik";
 import axios from "axios";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import PaymentServices from "../../../utilities/api/payment";
+import { Loader } from "../../../components/common/loading/loading";
+import toast from "react-hot-toast";
 
 const validationSchema = yup.object({
 	bank_name: yup
@@ -28,8 +32,6 @@ function ManualPayment() {
 
 	const total_credit_hours =
 		window.localStorage.getItem("total_credit_hours");
-	const token = JSON.parse(window.localStorage.getItem("token"));
-	const reg_id = window.localStorage.getItem("registration_id");
 
 	const amount = total_credit_hours * 150;
 
@@ -53,70 +55,39 @@ function ManualPayment() {
 				account_number: "",
 			},
 			validationSchema,
-			onSubmit: (values) => {
-				upload((url) => {
-					console.log(url);
-					const payment = {
-						amount: amount,
-						receipt_url: url,
-						registration_id: reg_id,
-						type: "manual",
-					};
-
-					const config = {
-						method: "post",
-						maxBodyLength: Infinity,
-						url: "http://localhost:8000/api/pay",
-						headers: {
-							Authorization: "Bearer " + token,
-						},
-						data: payment,
-					};
-
-					axios
-						.request(config)
-						.then((result) => {
-							console.log(result);
-							navigate("/payment-successful");
-						})
-						.catch((err) => {
-							console.log(err);
-							alert(err.response.data.message);
-						});
+			onSubmit: async (values) => {
+				let url;
+				await uploadMutation.mutateAsync(null, {
+					onSuccess: (data) => {
+						console.log({ data });
+						url = data;
+					},
+					onError: (error) => {
+						if (error?.response?.data) {
+							toast.error(error?.response?.data?.message);
+						} else {
+							toast.error("Unable to Process Payment");
+						}
+					},
 				});
+				console.log({ url });
+
+				await paymentMutation.mutateAsync(url);
 			},
 		});
 
-	const upload = (callback) => {
-		const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-		const CLOUDINARY_UPLOAD_PRESET = import.meta.env
-			.VITE_CLOUDINARY_UPLOAD_PRESET;
+	const uploadMutation = useMutation({
+		mutationKey: ["upload-receipt"],
+		mutationFn: () => PaymentServices.uploadReceipt(img),
+	});
 
-		if (img) {
-			var bodyFormData = new FormData();
-			bodyFormData.append("file", img ? img : uploadImage);
-			bodyFormData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-			axios
-				.post(
-					`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-					bodyFormData
-				)
-				.then((res) => {
-					if (res.data.secure_url !== undefined) {
-						const uploadedFileUrl = res.data.secure_url;
-						console.log(uploadedFileUrl);
-						setImgUrl(uploadedFileUrl);
-						callback(uploadedFileUrl);
-					}
-				})
-				.catch((error) => {
-					console.log(error);
-					alert(error);
-				});
-		} else {
-			alert("please upload profile picture!!");
-		}
-	};
+	const paymentMutation = useMutation({
+		mutationKey: ["pay-manual"],
+		mutationFn: (url) => PaymentServices.payManually(amount, url),
+		onSuccess: (data) => {
+			navigate("/payment-successful");
+		},
+	});
 
 	return (
 		<>
@@ -176,8 +147,22 @@ function ManualPayment() {
 						/>
 					</div>
 					<Button
-						text="FINISH REGISTRATION"
-						className="white blue-bg small-btn"
+						text={
+							uploadMutation.isPending ? (
+								<>
+									<Loader color={"white"} w="10px" h="14px" />
+									Uploading Receipt..
+								</>
+							) : paymentMutation.isPending ? (
+								<>
+									<Loader color={"white"} w="10px" h="10px" />
+									Saving Data..
+								</>
+							) : (
+								"FINISH REGISTRATION"
+							)
+						}
+						className="white blue-bg small-btn flex flex-row items-center justify-center"
 					/>
 				</form>
 			</div>
