@@ -4,7 +4,7 @@ import { baseUrl, withAdminTokenHeader } from "./api.config";
 const getAllAdmins = async () => {
 	const admins = await axios
 		.get(
-			`${baseUrl}`,
+			`${baseUrl}/admins`,
 			withAdminTokenHeader({
 				headers: {
 					"Content-Type": "application/json",
@@ -15,5 +15,5 @@ const getAllAdmins = async () => {
 		.then((res) => res.data);
 	return admins;
 };
-
-export default AdminService = { getAllAdmins };
+const AdminService = { getAllAdmins };
+export default AdminService;
