@@ -9,6 +9,7 @@ import AddCourseValidation from "./AddCourseValidation";
 import CoursesServes from "../../../utilities/api/Course";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 
 function CourseList() {
@@ -30,9 +31,10 @@ function CourseList() {
   }
   const Courses = useQuery({
     queryFn: () => CoursesServes.getAllCourses(),
-    queryKey:["Course"],
+    queryKey: ["Course"],
+    
   });
-
+  
 
   const queryclient = useQueryClient();
   console.log(Courses);
@@ -63,10 +65,17 @@ function CourseList() {
       setflag(true);
       setbtn("ADD COURSE");
       editcoures.mutate(Course);
+      if (addcoures.error) {
+    toast.error(addcoures.error.message);
+  }
       setValues(cor);
       
     } else {
       addcoures.mutate(Course);
+      
+      if (addcoures.error) {
+    toast.error(addcoures.error.message);
+  }
       setValues(cor);
     }
     
@@ -84,8 +93,14 @@ function CourseList() {
 
   return (
     <>
+      
       <AdminNavBar />
+      
       <div className="course-container">
+        <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
         <h1>{btn}</h1>
         <table>
           <thead>
