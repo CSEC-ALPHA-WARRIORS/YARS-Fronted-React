@@ -5,19 +5,38 @@ import Footer from "../../../components/common/footer/footer";
 import "./paymentListStyle.scss";
 import PaymentRow from "../../../components/admin/paymenRow";
 import axios from "axios";
+import { Loader } from "../../../components/common/loading/loading";
+import getAllPayments from '../../../utilities/api/payment';
+import paymentService from "../../../utilities/api/payment";
+import  {useQuery} from "@tanstack/react-query";
 function PaymentList() {
   const [paymentList, setPaymentList] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/payments")
-      .then((response) => {
-        setPaymentList(response.data);
-        console.log(paymentList);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+
+  const {data, isLoading, error} = useQuery({
+    queryKey: ["payments"],
+    queryFn: () => paymentService.getAllPayments(),
+  })
+
+ 
+
+  // useEffect(() => {
+  //   getAllPayments().then((response) => {
+  //     setPaymentList(response);
+  //     console.log(response);
+  //   }).catch((error) => {
+  //     console.log(error);
+  //   });
+    
+    // axios
+    //   .get("http://localhost:8000/api/payments")
+    //   .then((response) => {
+    //     setPaymentList(response.data);
+    //     console.log(paymentList);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  // }, []);
   return (
     <>
       <AdminNavBar />
@@ -37,7 +56,7 @@ function PaymentList() {
             </tr>
           </thead>
           {
-            paymentList.map((payment,index)=>(
+           isLoading ? <Loader />:!error? data.map((payment,index)=>(
               <PaymentRow 
               id={index+1}
               registration_id={payment.registration_id}
@@ -49,7 +68,9 @@ function PaymentList() {
               
               />
             ))
-          }
+          :
+
+            <p>Something went wrong</p>   }
           
         </table>
       </div>

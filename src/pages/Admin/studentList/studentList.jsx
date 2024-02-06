@@ -4,41 +4,27 @@ import "./studentsStyle.scss";
 import StudentRow from "../../../components/admin/studentRow";
 import Footer from "../../../components/common/footer/footer";
 import axios, { all } from "axios";
+import {Loader} from "../../../components/common/loading/loading";
+import StudentService from "../../../utilities/api/student";
+import { useQuery } from "@tanstack/react-query";
+
 function StudentList() {
   const [studentData, setStudentData] = useState([]);
+  const {data, isLoading, error} = useQuery({
+    queryKey: ["students"],
+    queryFn: () => StudentService.getStudents(),
+  })
+
+  
 
   // getting token from local storage
-  const token = window.localStorage.getItem("admin_token");
 
-
-  useEffect(() => {
-
-    // setting header values for axios
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'http://localhost:8000/api/students',
-      headers: { 
-        'Content-Type': 'application/json', 
-        'Authorization': 'Bearer ' + token
-      },
-    };
-
-    axios
-      .request(config)
-      .then((response) => {
-        setStudentData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  let newId = 1;
-  const listAll = studentData.map((students) => {
-    const newdata = { ...students, newId };
-    newId++;
-    return newdata;
-  });
+  // let newId = 1;
+  // const listAll = !isLoading && data.map((students) => {
+  //   const newdata = { ...students, newId };
+  //   newId++;
+  //   return newdata;
+  // });
 
   return (
     <>
@@ -54,20 +40,24 @@ function StudentList() {
               <th>Last Name</th>
               <th>Email</th>
               <th>Phone Number</th>
+              <th>Action</th>
             </tr>
           </thead>
+{
+  isLoading ? <div style={{textAlign:'center'}} className="loading"> <Loader/> </div>: 
 
-          {listAll.map((allStudents) => (
+       data.map((allStudents) => (
             <StudentRow
-              key={allStudents.newId}
-              id={allStudents.newId}
+              key={allStudents.id}
+              id={allStudents.id}
               fname={allStudents.fname}
               mname={allStudents.mname}
               lname={allStudents.lname}
               email={allStudents.email}
               phoneNumber={allStudents.phonenumber}
             />
-          ))}
+          )) }
+          {error && <p>Something went wrong</p>}
         </table>
       </div>
       <Footer />
