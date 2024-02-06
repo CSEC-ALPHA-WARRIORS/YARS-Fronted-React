@@ -5,6 +5,7 @@ import Button from "../common/button/button";
 import {  useMutation, useQueryClient } from "@tanstack/react-query";
 import CoursesServes from "../../utilities/api/Course";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 function CourseRow({
   id,
   delId,
@@ -40,8 +41,11 @@ function CourseRow({
   updatehandlerFun
   }
   Course.id = delId;
-  const handleClick = (event,) => {
+  const handleClick = (event) => {
     del_course.mutate(delId);
+    if (del_course.error) {
+      toast.error(del_course.error.message);
+    }
   };
   const handleUpdate = (event) => {
     updatehandlerFun(Course);
@@ -49,6 +53,10 @@ function CourseRow({
  
   return (
     <>
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
       <tbody>
         <td>{id}</td>
         <td>

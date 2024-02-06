@@ -37,12 +37,11 @@ function CourseList() {
   
 
   const queryclient = useQueryClient();
-  console.log(Courses);
   const addcoures = useMutation({
     mutationFn: CoursesServes.addCourses,
     onSuccess: () => {
       queryclient.invalidateQueries(["Course"]);
-    }
+    },
   });
    const editcoures = useMutation({
     mutationFn: CoursesServes.editCourses,
