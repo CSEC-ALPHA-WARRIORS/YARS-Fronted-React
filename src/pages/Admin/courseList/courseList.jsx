@@ -1,28 +1,54 @@
-import React, { useEffect, useState } from "react";
 import Button from "../../../components/common/button/button";
 import InputField from "../../../components/common/inputField/inputField";
 import CourseRow from "../../../components/admin/courseRow";
 import AdminNavBar from "../../../components/admin/AdminNavBar";
 import "./courseListStyle.scss";
 import Footer from "../../../components/common/footer/footer";
-import axios from "axios";
 import { useFormik } from "formik";
 import AddCourseValidation from "./AddCourseValidation";
+import CoursesServes from "../../../utilities/api/Course";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+
 
 function CourseList() {
-  const [courseList, setCourseList] = useState([]);
+  const [btn, setbtn] = useState("ADD COURSE");
+  const [flag, setflag] = useState(true);
+  let cor = {
+        title: "",
+        code: "",
+        year: "",
+        semester: "",
+        program: "",
+        credit_hours: "",
+  }
+  let updatehandlerFun = (Cours) => {
+    setbtn("EDIT COURSE");
+    setValues(Cours);
+    setflag(false);
+    
+  }
+  const Courses = useQuery({
+    queryFn: () => CoursesServes.getAllCourses(),
+    queryKey: ["Course"],
+    
+  });
+  
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/courses")
-      .then((response) => {
-        setCourseList(response.data);
-        // console.log(courseList);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const queryclient = useQueryClient();
+  const addcoures = useMutation({
+    mutationFn: CoursesServes.addCourses,
+    onSuccess: () => {
+      queryclient.invalidateQueries(["Course"]);
+    },
+  });
+   const editcoures = useMutation({
+    mutationFn: CoursesServes.editCourses,
+    onSuccess: () => {
+      queryclient.invalidateQueries(["Course"]);
+    }
+  });
   const onSubmit = (event) => {
     const Course = {
       title: values.title,
@@ -31,36 +57,50 @@ function CourseList() {
       semester: values.semester,
       program: values.program,
       credit_hours: values.credit_hours,
+      id: values.id
     };
-    axios
-      .post("http://localhost:8000/api/course/add", Course)
-      .then((response) => {
-        console.log(response);
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (!flag) {
+      console.log(Course);
+      setflag(true);
+      setbtn("ADD COURSE");
+      editcoures.mutate(Course);
+      if (addcoures.error) {
+    toast.error(addcoures.error.message);
+  }
+      setValues(cor);
+      
+    } else {
+      addcoures.mutate(Course);
+      
+      if (addcoures.error) {
+    toast.error(addcoures.error.message);
+  }
+      setValues(cor);
+    }
+    
+    
+   
   };
-  const { handleBlur, values, errors, handleChange, touched, handleSubmit } =
+  const { handleBlur, values, errors, handleChange, touched, handleSubmit, setValues } =
     useFormik({
-      initialValues: {
-        title: "",
-        code: "",
-        year: "",
-        semester: "",
-        program: "",
-        credit_hours: "",
-      },
+      initialValues: cor,
       validationSchema: AddCourseValidation,
       onSubmit,
     });
+  
+  
 
   return (
     <>
+      
       <AdminNavBar />
+      
       <div className="course-container">
-        <h1>Courses</h1>
+        <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+        <h1>{btn}</h1>
         <table>
           <thead>
             <tr>
@@ -74,23 +114,24 @@ function CourseList() {
               <th>Action</th>
             </tr>
           </thead>
-          {courseList.map((courses, index) => (
+          {Courses.data?.map((courses, index) => (
             <CourseRow
-              id={index + 1}
+              key={index + 1}
               delId={courses.id}
               title={courses.title}
               code={courses.code}
               year={courses.year}
               semester={courses.semester}
               program={courses.program}
-              creditHr={courses.credit_hours}
+              credit_hours={courses.credit_hours}
+              updatehandlerFun={updatehandlerFun}
             />
           ))}
         </table>
 
         <form action="" onSubmit={handleSubmit}>
           <div className="add-course-container">
-            <h1>Add Course</h1>
+            <h1>{btn}</h1>
             <div className="course-input-container">
               <div className="row">
                 <InputField
@@ -169,7 +210,7 @@ function CourseList() {
             </div>
             <Button
               className="small-btn blue-black-bg white"
-              text="ADD COURSE"
+              text={btn}
             />
           </div>
         </form>
