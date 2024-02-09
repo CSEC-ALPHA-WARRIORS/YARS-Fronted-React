@@ -8,23 +8,35 @@ import Button from "../../../components/common/button/button";
 import axios from "axios";
 import { useFormik } from "formik";
 import AddAdminValidation from "./AddAdminValidation";
+import AdminService from "../../../utilities/api/admin";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 function AdminList() {
   const [adminList, setAdminList] = useState([]);
   const [error, setError] = useState(null);
-  // const [x, setX] = useState(1);
-  // let y = 0;
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/admins")
-      .then((response) => {
-        setAdminList(response.data);
-        // console.log(adminList);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const [x, setX] = useState(1);
+  let y = 0;
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8000/api/admins")
+  //     .then((response) => {
+  //       setAdminList(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
+  const allAdmins = useQuery({
+    queryFn: () => AdminService.getAllAdmins(),
+    queryKey: ["admins"],
+  });
+  const queryClient = useQueryClient();
+  const addMutation = useMutation({
+    mutationFn: AdminService.addAdmin,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["admins"]);
+    },
+  });
   const onSubmit = (event) => {
     const Admin = {
       fname: values.fname,
@@ -34,16 +46,7 @@ function AdminList() {
       phonenumber: values.phonenumber,
       role: values.role,
     };
-     axios
-      .post("http://localhost:8000/api/admin/add", Admin)
-      .then((response) => {
-        console.log(response);
-        // setX((v) => v++);
-        window.location.reload();
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+    addMutation.mutate(Admin);
   };
   const { handleBlur, errors, touched, handleChange, values, handleSubmit } =
     useFormik({
@@ -75,7 +78,7 @@ function AdminList() {
               <th>Action</th>
             </tr>
           </thead>
-          {adminList.map((admins, index) => (
+          {allAdmins.data?.map((admins, index) => (
             <AdminRow
               key={admins.id}
               id={index + 1}
