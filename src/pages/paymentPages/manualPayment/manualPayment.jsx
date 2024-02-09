@@ -10,154 +10,165 @@ import { useFormik } from "formik";
 import axios from "axios";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import PaymentServices from "../../../utilities/api/payment";
+import { Loader } from "../../../components/common/loading/loading";
+import toast from "react-hot-toast";
 
 const validationSchema = yup.object({
-  bank_name: yup.string("Enter your bank name").required("Bank name is required"),
-  account_number: yup
-    .string("Enter your account number")
-    .required("Account number is required"),
+	bank_name: yup
+		.string("Enter your bank name")
+		.required("Bank name is required"),
+	account_number: yup
+		.string("Enter your account number")
+		.required("Account number is required"),
 });
 
 function ManualPayment() {
-  const [img, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(defaultIcon);
-  const [imgUrl, setImgUrl] = useState("");
-  const navigate = useNavigate();
+	const [img, setImage] = useState(null);
+	const [imagePreview, setImagePreview] = useState(defaultIcon);
+	const [imgUrl, setImgUrl] = useState("");
+	const navigate = useNavigate();
 
-  const total_credit_hours = window.localStorage.getItem("total_credit_hours");
-  const token = JSON.parse(window.localStorage.getItem("token"));
-  const reg_id = window.localStorage.getItem("registration_id");
+	const total_credit_hours =
+		window.localStorage.getItem("total_credit_hours");
 
-  const amount = total_credit_hours * 150;
+	const amount = total_credit_hours * 150;
 
-  const imageHandler = (event) => {
-    const selectedImage = event.target.files ? event.target.files[0] : null;
-    setImage(selectedImage);
+	const imageHandler = (event) => {
+		const selectedImage = event.target.files ? event.target.files[0] : null;
+		setImage(selectedImage);
 
-    if (selectedImage) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(selectedImage);
-    }
-  };
+		if (selectedImage) {
+			const reader = new FileReader();
+			reader.onload = () => {
+				setImagePreview(reader.result);
+			};
+			reader.readAsDataURL(selectedImage);
+		}
+	};
 
-  const { handleBlur, errors, touched, handleChange, values, handleSubmit } =
-    useFormik({
-      initialValues: {
-        bank_name: "",
-        account_number: "",
-      },
-      validationSchema,
-      onSubmit: (values) => {
-        upload((url) => {
+	const { handleBlur, errors, touched, handleChange, values, handleSubmit } =
+		useFormik({
+			initialValues: {
+				bank_name: "",
+				account_number: "",
+			},
+			validationSchema,
+			onSubmit: async (values) => {
+				let url;
+				await uploadMutation.mutateAsync(null, {
+					onSuccess: (data) => {
+						console.log({ data });
+						url = data;
+					},
+					onError: (error) => {
+						if (error?.response?.data) {
+							toast.error(error?.response?.data?.message);
+						} else {
+							toast.error("Unable to Process Payment");
+						}
+					},
+				});
+				console.log({ url });
 
-          console.log(url);
-            const payment = {
-                amount: amount,
-                receipt_url: url,
-                registration_id: reg_id,
-                type: "manual"
-            }
+				await paymentMutation.mutateAsync(url);
+			},
+		});
 
-            const config = {
-                method: "post",
-                maxBodyLength: Infinity,
-                url: "http://localhost:8000/api/pay",
-                headers: {
-                    "Authorization": "Bearer " + token,
-                },
-                data: payment
-            }
+	const uploadMutation = useMutation({
+		mutationKey: ["upload-receipt"],
+		mutationFn: () => PaymentServices.uploadReceipt(img),
+	});
 
-            axios.request(config)
-            .then(result => {
-                console.log(result)
-                navigate("/payment-successful");
-            }).catch(err => {
-                console.log(err);
-                alert(err.response.data.message);
-            })
-        })
-      },
-    });
+	const paymentMutation = useMutation({
+		mutationKey: ["pay-manual"],
+		mutationFn: (url) => PaymentServices.payManually(amount, url),
+		onSuccess: (data) => {
+			navigate("/payment-successful");
+		},
+	});
 
-    const upload = (callback) => {
-        const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
-        const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
-        
-        if(img) {
-          var bodyFormData = new FormData();
-          bodyFormData.append("file", img ? img : uploadImage);
-          bodyFormData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-          axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, bodyFormData).then(res => {
-            if (res.data.secure_url !== undefined) {
-              const uploadedFileUrl = res.data.secure_url;
-              console.log(uploadedFileUrl);
-              setImgUrl(uploadedFileUrl);
-              callback(uploadedFileUrl)
-            }
-          }).catch(error => {
-            console.log(error);
-            alert(error);
-          })
-        }else {
-          alert("please upload profile picture!!")
-        }
-    }
-
-  return (
-    <>
-      <NavBar />
-      <div className="Manual-payment-container">
-        <form onSubmit={handleSubmit}>
-          <h1>Manual Payment</h1>
-          <div className="inputfield-container">
-            <InputField
-              label="Bank Name"
-              name="bank_name"
-              value={values.bank_name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={
-                errors.bank_name && touched.bank_name ? errors.bank_name : ""
-              }
-              placeholder="Enter a Bank you complete your Payment"
-            />
-            {}
-            <InputField
-              label="Account Number"
-              name="account_number"
-              value={values.account_number}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={
-                errors.account_number && touched.account_number ? errors.account_number : ""
-              }
-              placeholder="Enter your bank Account"
-            />
-          </div>
-          <div className="upload-receipt-container">
-            <label className="ppimage" htmlFor="profileImg">
-              <img src={imagePreview} alt="" />
-            </label>
-            <label htmlFor="">Upload Receipt</label>
-            <label className="upload-receipt" htmlFor="upload-receipt">
-              <BiCloudUpload className="upload-icon" />
-              <h2>Upload</h2>
-            </label>
-            <input type="file" id="upload-receipt" onChange={imageHandler} />
-          </div>
-          <Button
-            text="FINISH REGISTRATION"
-            className="white blue-bg small-btn"
-          />
-        </form>
-      </div>
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<NavBar />
+			<div className="Manual-payment-container">
+				<form onSubmit={handleSubmit}>
+					<h1>Manual Payment</h1>
+					<div className="inputfield-container">
+						<InputField
+							label="Bank Name"
+							name="bank_name"
+							value={values.bank_name}
+							onChange={handleChange}
+							onBlur={handleBlur}
+							error={
+								errors.bank_name && touched.bank_name
+									? errors.bank_name
+									: ""
+							}
+							placeholder="Enter a Bank you complete your Payment"
+						/>
+						{}
+						<InputField
+							label="Account Number"
+							name="account_number"
+							value={values.account_number}
+							onChange={handleChange}
+							onBlur={handleBlur}
+							error={
+								errors.account_number && touched.account_number
+									? errors.account_number
+									: ""
+							}
+							placeholder="Enter your bank Account"
+						/>
+					</div>
+					<div className="upload-receipt-container">
+						<label className="ppimage" htmlFor="profileImg">
+							<img
+								className="receipt-review"
+								src={imagePreview}
+								alt=""
+							/>
+						</label>
+						<label htmlFor="">Upload Receipt</label>
+						<label
+							className="upload-receipt"
+							htmlFor="upload-receipt"
+						>
+							<BiCloudUpload className="upload-icon" />
+							<h2>Upload</h2>
+						</label>
+						<input
+							type="file"
+							id="upload-receipt"
+							onChange={imageHandler}
+						/>
+					</div>
+					<Button
+						text={
+							uploadMutation.isPending ? (
+								<>
+									<Loader color={"white"} w="10px" h="14px" />
+									Uploading Receipt..
+								</>
+							) : paymentMutation.isPending ? (
+								<>
+									<Loader color={"white"} w="10px" h="10px" />
+									Saving Data..
+								</>
+							) : (
+								"FINISH REGISTRATION"
+							)
+						}
+						className="white blue-bg small-btn flex flex-row items-center justify-center"
+					/>
+				</form>
+			</div>
+			<Footer />
+		</>
+	);
 }
 
 export default ManualPayment;

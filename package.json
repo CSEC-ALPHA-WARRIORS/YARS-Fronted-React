@@ -15,8 +15,11 @@
     "@tanstack/react-query-devtools": "^5.18.1",
     "axios": "^1.4.0",
     "formik": "^2.4.1",
+    "immer": "^10.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-form-stepper": "^2.0.3",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^4.9.0",
     "react-loader-spinner": "^6.1.6",
     "react-router": "^6.12.1",
@@ -24,7 +27,7 @@
     "sass": "^1.62.1",
     "sweetalert2": "^11.10.5",
     "yup": "^1.2.0",
-    "zustand": "^4.3.8"
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

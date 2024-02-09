@@ -1,56 +1,60 @@
 .btn {
-    padding: 14px 60px;
-    color: #023047;
-    font-family: "Raleway";
-    font-weight: 900;
-    font-size: 25px;
-    line-height: 134%;
-    border-radius: 59px;
-    max-width: 600px;
-    min-width: 350px;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
+	padding: 14px 60px;
+	color: #023047;
+	font-family: "Raleway";
+	font-weight: 900;
+	font-size: 25px;
+	line-height: 134%;
+	border-radius: 59px;
+	max-width: 600px;
+	min-width: 350px;
+	cursor: pointer;
+	box-sizing: border-box;
+	transition: all 0.3s ease-in-out;
 
+	&:disabled {
+		background: #ddd;
+		color: #444;
+	}
 }
-.orange-hover:hover{
-    background-color: #FFB703;
-    color: #023047;
+.orange-hover:hover {
+	background-color: #ffb703;
+	color: #023047;
 }
 
-.small-btn{
-    padding: 10px 0px;
-    font-family: "Raleway";
-    // background-color: rgb(233, 96, 96);
-    font-weight: 900;
-    font-size: 24px;
-    // line-height: 134%;
-    border-radius: 59px;
-    text-transform: uppercase;
-    // width: 250px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    min-width: 300px;
+.small-btn {
+	padding: 10px 0px;
+	font-family: "Raleway";
+	// background-color: rgb(233, 96, 96);
+	font-weight: 900;
+	font-size: 24px;
+	// line-height: 134%;
+	border-radius: 59px;
+	text-transform: uppercase;
+	// width: 250px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	min-width: 300px;
 }
-.small-btn:hover{
-    color: #023047;
-    background-color: #FFB703;
+.small-btn:hover {
+	color: #023047;
+	background-color: #ffb703;
 }
-.small-small-btn{
-    padding: 6px 0px;
-    font-family: "Raleway";
-    font-weight: 900;
-    // color: white;
-    min-width: 150px;
+.small-small-btn {
+	padding: 6px 0px;
+	font-family: "Raleway";
+	font-weight: 900;
+	// color: white;
+	min-width: 150px;
 
-    width: 100px;
-    background-color: #FB8500;
-    font-size: 14px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+	width: 100px;
+	background-color: #fb8500;
+	font-size: 14px;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
 }
-.small-small-btn:hover{
-    color: #023047;
-    background-color: #FFB703;
+.small-small-btn:hover {
+	color: #023047;
+	background-color: #ffb703;
 }

@@ -1,77 +1,79 @@
 .Manual-payment-container {
-    padding: 30px 275px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: end;
+	padding: 30px 275px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	// align-items: end;
 
-    h1 {
-        font-family: 'Raleway';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 35px;
-        line-height: 75px;
-        margin-bottom: 10px;
-        width: 100%;
-        text-align: center;
-    }
+	h1 {
+		font-family: "Raleway";
+		font-style: normal;
+		font-weight: 700;
+		font-size: 35px;
+		line-height: 75px;
+		margin-bottom: 10px;
+		width: 100%;
+		text-align: center;
+	}
 
-    .inputfield-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        flex: 1;
-        width: 100%;
-        gap: 30px;
-        margin-bottom: 30px;
+	.inputfield-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		flex: 1;
+		width: 100%;
+		gap: 30px;
+		margin-bottom: 30px;
+	}
 
-    }
+	.upload-receipt-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 50px;
 
-    .upload-receipt-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 50px;
+		label {
+			font-family: "Raleway";
+			font-style: normal;
+			font-weight: 600;
+			font-size: 16px;
+			line-height: 23px;
+			color: #000000;
+			margin-bottom: 5px;
+			width: 100%;
+		}
 
-        label {
-            font-family: 'Raleway';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 23px;
-            color: #000000;
-            margin-bottom: 5px;
-            width: 100%;
-        }
+		input {
+			display: none;
+		}
 
-        input {
-            display: none;
-        }
+		.upload-receipt {
+			width: 100%;
+			height: 100px;
+			border: 2px solid #03234e;
+			border-radius: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			background: rgba(163, 217, 249, 0.09);
+			display: flex;
+			flex-direction: column;
 
-        .upload-receipt {
-            width: 100%;
-            height: 300px;
-            border: 2px solid #03234E;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: rgba(163, 217, 249, 0.09);
-            display: flex;
-            flex-direction: column;
+			.upload-icon {
+				font-size: 50px;
+				// font-weight: 100;
+				// text-align: center;
+			}
+		}
+	}
+}
 
-
-            .upload-icon {
-                font-size: 150px;
-                // font-weight: 100;
-                // text-align: center;
-            }
-        }
-    }
-
-
+.receipt-review {
+	max-width: 100%;
+	max-height: 80%;
+	object-fit: contain;
 }
