@@ -1,5 +1,6 @@
 import axios from "axios";
 import { baseUrl, withAdminTokenHeader } from "./api.config";
+
 import { CLOUDINARY_UPLOAD_PRESET, CLOUD_NAME } from "../config/env";
 
 const payWithChapa = async (amount) => {
@@ -64,10 +65,30 @@ const uploadReceipt = async (receipt) => {
 	return response.secure_url;
 };
 
+const getAllPayments = async () => {
+	const admins = await axios
+		.get(
+			`${baseUrl}/api/payments`,
+			withAdminTokenHeader()
+		)
+		.then((res) => res.data);
+	return admins;
+};
+
+const verifyPayment = async (id) => {
+ /*response =  await axios.put(`${baseUrl}/api/payment/verify/${id}`,	withAdminTokenHeader(
+    
+ ))
+
+ return res.data;*/
+}
+
 const PaymentServices = {
 	payWithChapa,
 	payManually,
 	uploadReceipt,
+  getAllPayments,
+  verifyPayment
 };
 
 export default PaymentServices;
